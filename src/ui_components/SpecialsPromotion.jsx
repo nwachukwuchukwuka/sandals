@@ -45,8 +45,8 @@ const SpecialsPromotion = () => {
     const currentSlide = carouselData[currentIndex];
 
     return (
-        <div className="  w-[280px]">
-            <h1 className="uppercase mb-4">Specials & Promotions</h1>
+        <div className="">
+            <h1 className="uppercase mb-4 tracking-wide">Specials & Promotions</h1>
             <div
                 className="relative  h-[450px] bg-cover bg-center"
                 style={{ backgroundImage: currentSlide.bgImage }}
@@ -55,7 +55,7 @@ const SpecialsPromotion = () => {
                 <div className="absolute inset-0 flex flex-col items-center justify-end mb-6  text-center">
                     <a
                         href={currentSlide.link}
-                        className={`${currentSlide.buttonColor}  px-6 py-3 rounded-lg transition duration-300`}
+                        className={`${currentSlide.buttonColor}  px-6 py-1 rounded-sm transition duration-300`}
                     >
                         {currentSlide.linkText}
                     </a>

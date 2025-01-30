@@ -1,18 +1,18 @@
-import React from 'react'
+// import React from 'react'
 
-const InclusiveResorts = () => {
-    return (
-        <div className='bg-gray-100'>
-            <div className='max-w-[70%] mx-auto'>
-                <h1>17 All-Inclusive Resorts
-                    On the caribbean’s best beaches</h1>
-                <div className='flex'>
-                    <p>Our Sandals Location: </p>
-                </div>
-                <p></p>
-            </div>
-        </div>
-    )
-}
+// const InclusiveResorts = () => {
+//     return (
+//         <div className='bg-gray-100 pt-[100px]'>
+//             <div className='max-w-[70%] mx-auto'>
+//                 <h1>17 All-Inclusive Resorts
+//                     On the caribbean’s best beaches</h1>
+//                 <div className='flex'>
+//                     <p>Our Sandals Location: </p>
+//                 </div>
+//                 <p></p>
+//             </div>
+//         </div>
+//     )
+// }
 
-export default InclusiveResorts
+// export default InclusiveResorts

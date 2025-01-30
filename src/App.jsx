@@ -10,24 +10,40 @@ import SpecialsPromotion from "./ui_components/SpecialsPromotion"
 import FeaturedResorts from "./ui_components/FeaturedResorts"
 import WholeFamily from "./ui_components/WholeFamily"
 import AwardsReviews from "./ui_components/AwardReviews"
+import SubFooter from "./ui_components/SubFooter"
+import Footer from "./ui_components/Footer"
 
 const App = () => {
   return (
-    <div>
+    <div className="bg-gray-100">
       <Navbar />
       <Hero />
       <ResortSelector />
       <CaribbeanSection />
       <CaribbeanExperience />
       <SandalsVacationIncludes />
-      <LocationCarousel />
-      <div className="flex gap-5 max-w-[75%] mx-auto mb-[100px] mt-[150px]">
-        <SpecialsPromotion />
-        <FeaturedResorts />
-        <WholeFamily />
+      {/* <LocationCarousel /> */}
+      <div className="bg-gray-100">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-5 max-w-[90%]  md:max-w-[85%] mx-auto mb-[100px] mt-[150px]">
+          <div className="w-full md:w-[350px]">
+            <SpecialsPromotion />
+          </div>
+          <div className="w-full md:w-[350px]">
+            <FeaturedResorts />
+
+          </div>
+          <div className="w-full md:w-[350px]">
+            <WholeFamily />
+          </div>
+        </div>
+
       </div>
+
       <AwardsReviews />
-      {/* <DateRangePicker /> */}
+      <SubFooter />
+      <Footer />
+      {/* <DateRangePicker />
+      {/* <MyCarousel */}
 
     </div>
   )

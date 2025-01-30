@@ -46,16 +46,16 @@ const FeaturedResorts = () => {
 
     return (
         <div>
-            <h1 className="mb-4 uppercase">Featured Resorts</h1>
+            <h1 className="mb-4 uppercase tracking-wide">Featured Resorts</h1>
             <div
-                className="relative h-[450px] w-[280px] bg-cover bg-center"
+                className="relative h-[450px]  bg-cover bg-center"
                 style={{ backgroundImage: currentSlide.bgImage }}
             >
                 {/* Carousel Content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-end mb-6  text-center">
                     <a
                         href={currentSlide.link}
-                        className={`${currentSlide.buttonColor}  px-6 py-3 rounded-lg transition duration-300`}
+                        className={`${currentSlide.buttonColor}  px-6 py-1 rounded-sm transition duration-300`}
                     >
                         {currentSlide.linkText}
                     </a>

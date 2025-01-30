@@ -120,7 +120,7 @@ const App = () => {
 
             {/* Menu Button for Mobile */}
             <button onClick={toggleMenu} className="block md:hidden ml-4">
-              {!isMenuOpen &&  <AiOutlineMenu size={26} />}
+              {!isMenuOpen && <AiOutlineMenu size={26} />}
             </button>
           </div>
         </div>
@@ -129,10 +129,10 @@ const App = () => {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }} 
-              animate={{ opacity: 1, scale: 1 }} 
-              exit={{ opacity: 0, scale: 0.95 }} 
-              transition={{ duration: 0.3 }} 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
               className="fixed top-0 left-0 w-full h-full bg-black text-white z-50 shadow-lg"
             >
               {/* Sidebar Header with Close Icon */}
@@ -171,7 +171,7 @@ const App = () => {
                   </a>
                   <button className="hover:text-gray-400 text-left">SIGN IN OR JOIN</button>
                   <button className="hover:text-gray-400 text-left">SEARCH</button>
-                 
+
                 </nav>
               </div>
             </motion.div>
@@ -179,31 +179,45 @@ const App = () => {
         </AnimatePresence>
       </header>
 
-      <section
-        className="relative h-[500px] md:h-[750px] bg-cover bg-center flex items-center justify-center text-white"
-        style={{
-          backgroundImage: `url('${background_images[currentImage]}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <section className="relative h-[500px] md:h-[750px] overflow-hidden">
+        <AnimatePresence>
+          <motion.div
+            key={currentImage}
+            initial={{ x: "100%" }}
+            animate={{ x: "0%" }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            style={{
+              backgroundImage: `url('${background_images[currentImage]}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        </AnimatePresence>
+
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        <div className="relative  flex flex-col items-center justify-center h-full text-center text-white">
+        <div className="relative flex flex-col items-center justify-center h-full text-center text-white">
           <h2 className="text-4xl md:text-6xl font-bold">Winter Blues</h2>
           <p className="text-xl md:text-2xl mt-4">MADE OF CARIBBEAN</p>
           <p className="text-lg mt-2">Up to 65% off + up to $1,350 credit</p>
-          <Button className="mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full">View Details</Button>
+          <Button className="mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full">
+            View Details
+          </Button>
         </div>
 
-        <div className="absolute bottom-[50px] left-4 flex space-x-2 md:hidden">
+        {/* Dots Navigation */}
+        <div className="absolute bottom-[50px] left-4 hidden md:flex space-x-2">
           {background_images.map((_, index) => (
             <div
               key={index}
-              className={`w-[6px] h-[6px] rounded-full ${index === currentImage ? "bg-white " : "bg-gray-500"}`}
+              onClick={() => setCurrentImage(index)}
+              className={`w-[6px] h-[6px] rounded-full cursor-pointer ${index === currentImage ? "bg-white" : "bg-gray-500"}`}
             ></div>
           ))}
         </div>
       </section>
+
     </div>
   );
 };
@@ -212,160 +226,3 @@ export default App;
 
 
 
-
-// import React, { useState, useEffect } from "react";
-// import { Button } from "@/components/ui/button";
-// import { ChevronDown } from "lucide-react";
-// import { motion } from "framer-motion";
-// import { background_images } from "@/constants/constants";
-// import { AiOutlineMenu } from "react-icons/ai";
-
-
-// const App = () => {
-//   const [scrolled, setScrolled] = useState(false);
-//   const [currentImage, setCurrentImage] = useState(0);
-//   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-//   const [selectedLanguage, setSelectedLanguage] = useState("ENGLISH");
-
-//   const languages = ["English", "Spanish", "French"];
-
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       setScrolled(window.scrollY > 50);
-//     };
-
-//     const imageInterval = setInterval(() => {
-//       setCurrentImage((prev) => (prev + 1) % background_images.length);
-//     }, 5000);
-
-//     window.addEventListener("scroll", handleScroll);
-//     return () => {
-//       window.removeEventListener("scroll", handleScroll);
-//       clearInterval(imageInterval);
-//     };
-//   }, [background_images.length]);
-
-//   return (
-//     <div>
-//       <header
-//         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-black text-white shadow-md" : "bg-transparent text-white"
-//           }`}
-//       >
-//         <div className="md:max-w-[85%] mx-auto flex items-center justify-between px-5 py-2 md:p-4">
-//           <div className="">
-//             <h1 className="text-2xl font-bold">Sandals</h1>
-//             <div className="absolute right-[10px] top-[11px]">
-//               <AiOutlineMenu size={29} className="block md:hidden" />
-
-//             </div>
-
-
-//           </div>
-
-//           <div className="flex items-center">
-//             <div>
-//               <div className={`space-x-4 ${scrolled ? "hidden" : "flex justify-end mr-[15px] text-[10px] mb-2 "}`}>
-//                 <button className="hover:text-gray-400 hidden md:block">SIGN IN OR JOIN</button>
-//                 <button className="hover:text-gray-400 hidden md:block">SEARCH</button>
-
-//                 {/* Language Dropdown */}
-//                 <div className="relative hidden md:block">
-//                   <button
-//                     className="flex items-center space-x-1 hover:text-gray-400"
-//                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-//                   >
-//                     <span>{selectedLanguage}</span>
-//                     <motion.div
-//                       animate={{ rotate: isDropdownOpen ? 180 : 0 }}
-//                       transition={{ duration: 0.3 }}
-//                     >
-//                       <ChevronDown size={16} />
-//                     </motion.div>
-//                   </button>
-
-//                   {isDropdownOpen && (
-//                     <motion.ul
-//                       initial={{ opacity: 0, y: -10 }}
-//                       animate={{ opacity: 1, y: 0 }}
-//                       exit={{ opacity: 0, y: -10 }}
-//                       transition={{ duration: 0.3 }}
-//                       className="absolute left-0 w-32 mt-2 bg-white text-black border rounded-lg shadow-lg overflow-hidden"
-//                     >
-//                       {languages.map((language, index) => (
-//                         <li
-//                           key={index}
-//                           className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-//                           onClick={() => {
-//                             setSelectedLanguage(language);
-//                             setIsDropdownOpen(false);
-//                           }}
-//                         >
-//                           {language}
-//                         </li>
-//                       ))}
-//                     </motion.ul>
-//                   )}
-//                 </div>
-//               </div>
-
-//               <div className="flex items-center">
-//                 <nav className="hidden md:flex space-x-6 mr-4">
-//                   <a href="#resorts" className="hover:text-gray-400">
-//                     Resorts
-//                   </a>
-//                   <a href="#inclusions" className="hover:text-gray-400">
-//                     Inclusions
-//                   </a>
-//                   <a href="#weddings" className="hover:text-gray-400">
-//                     Weddings & Celebrations
-//                   </a>
-//                   <a href="#groups" className="hover:text-gray-400">
-//                     Groups
-//                   </a>
-//                   <a href="#specials" className="hover:text-gray-400">
-//                     Specials
-//                   </a>
-//                 </nav>
-//               </div>
-//             </div>
-
-//             <button className="bg-transparent hover:bg-gray-700 text-white font-bold py-1 px-4 rounded text-[13px] mr-8 md:mr-0 ">
-//               CHECK RATES <br />
-//               <span className={`${scrolled ? "hidden" : "flex"} text-[10px] md:text-[12px]`}>& AVAILABILITY</span>
-//             </button>
-//           </div>
-//         </div>
-//       </header>
-
-//       <section
-//         className="relative h-[750px] bg-cover bg-center flex items-center justify-center text-white"
-//         style={{
-//           backgroundImage: `url('${background_images[currentImage]}')`,
-//           backgroundSize: "cover",
-//           backgroundPosition: "center",
-//         }}
-//       >
-//         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-//         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white">
-//           <h2 className="text-4xl md:text-6xl font-bold">Winter Blues</h2>
-//           <p className="text-xl md:text-2xl mt-4">MADE OF CARIBBEAN</p>
-//           <p className="text-lg mt-2">Up to 65% off + up to $1,350 credit</p>
-//           <Button className="mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full">View Details</Button>
-//         </div>
-//         <div className="absolute bottom-4 left-4 flex space-x-2">
-//           {background_images.map((_, index) => (
-//             <div
-//               key={index}
-//               className={`w-2 h-2 rounded-full ${index === currentImage ? "bg-white " : "bg-gray-500"}`}
-//             ></div>
-//           ))}
-//         </div>
-//       </section>
-
-
-//     </div>
-//   );
-// };
-
-// export default App;

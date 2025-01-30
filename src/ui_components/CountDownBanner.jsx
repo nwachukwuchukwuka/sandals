@@ -34,7 +34,7 @@ const CountdownBanner = () => {
   const formatNumber = (num) => (num < 10 ? `0${num}` : num);
 
   return (
-    <div className="absolute top-[300px] md:top-[580px]  md:right-[87px] w-[375px] md:w-[400px] text-white p-4  ">
+    <div className="absolute top-[300px] md:top-[580px] right-[10px] md:right-[87px] w-[95%] md:w-[400px] text-white p-4 ">
       <div className="flex space-x-4 text-center justify-center bg-black opacity-[50%] pt-2">
         {Object.keys(timeLeft).length > 0 && (
           <>
@@ -65,7 +65,10 @@ const CountdownBanner = () => {
 
       <div className="flex items-center justify-center space-x-2  md:mt-0 text-black bg-white py-3">
         <p className="text-md ">WINTER BLUES SALE NOW ON</p>
-        <ChevronRight size={24} />
+        <div className="border rounded-full border-black">
+          <ChevronRight size={20} />
+        </div>
+
       </div>
     </div>
   );
