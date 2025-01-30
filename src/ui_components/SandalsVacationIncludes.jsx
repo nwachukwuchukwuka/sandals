@@ -2,7 +2,7 @@ import { sandals_vacation_images } from "@/constants/constants";
 
 const SandalsVacationIncludes = () => {
   return (
-    <div className="p-6 pb-[80px]">
+    <div className="p-6 pb-[80px] bg-white">
       {/* Heading and Description */}
       <div className="md:max-w-[56%] mx-auto text-center text-sm mt-8">
         <h1 className="text-[18px] md:text-[30px] font-semibold mb-4 md:mb-6 uppercase">
@@ -14,7 +14,7 @@ const SandalsVacationIncludes = () => {
       </div>
 
       {/* Image Gallery */}
-      <div className="flex md:flex-wrap justify-center md:max-w-[70%] mx-auto mt-6 gap-5 overflow-x-auto md:overflow-x-visible scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+      <div className="flex md:flex-wrap justify-center md:max-w-[70%] mx-auto mt-6 gap-4 overflow-x-auto md:overflow-x-visible scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
         {sandals_vacation_images.map((item, index) => (
           <div key={index} className="w-[90px] md:w-[120px] flex-shrink-0">
             <img src={item.image} alt={item.content} className="w-full h-auto" />
@@ -25,7 +25,7 @@ const SandalsVacationIncludes = () => {
 
       {/* Centered Button */}
       <div className="flex justify-center mt-6">
-        <button className="px-9 py-1 bg-black text-white text-sm">
+        <button className="px-9 py-1 bg-black text-white text-[12px] font-semibold">
           VIEW ALL INCLUSIONS
         </button>
       </div>

@@ -15,7 +15,7 @@ import Footer from "./ui_components/Footer"
 
 const App = () => {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-">
       <Navbar />
       <Hero />
       <ResortSelector />

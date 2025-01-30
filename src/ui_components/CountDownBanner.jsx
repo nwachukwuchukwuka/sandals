@@ -34,28 +34,28 @@ const CountdownBanner = () => {
   const formatNumber = (num) => (num < 10 ? `0${num}` : num);
 
   return (
-    <div className="absolute top-[300px] md:top-[580px] right-[10px] md:right-[87px] w-[95%] md:w-[400px] text-white p-4 ">
-      <div className="flex space-x-4 text-center justify-center bg-black opacity-[50%] pt-2">
+    <div className="absolute top-[380px] md:top-[580px] right-[10px] md:right-[87px] w-[95%] md:w-[400px] text-white p-4 ">
+      <div className="flex space-x-4 text-center justify-center bg-black opacity-[70%] pt-2">
         {Object.keys(timeLeft).length > 0 && (
           <>
             <div className="flex items-center ">
               <div className="pr-4 ">
-                <p className="text-lg md:text-2xl font-light">{formatNumber(timeLeft.days)}</p>
+                <p className="text-md md:text-2xl font-light">{formatNumber(timeLeft.days)}</p>
                 <span className="text-[14px] ">Days</span>
               </div>
               <div className="border-l border-white h-10 mx-2"></div>
               <div className="pr-4">
-                <p className="text-lg md:text-2xl font-light">{formatNumber(timeLeft.hours)}</p>
+                <p className="text-md md:text-2xl font-light">{formatNumber(timeLeft.hours)}</p>
                 <span className="text-[14px]">Hours</span>
               </div>
               <div className="border-l border-white h-10 mx-2"></div>
               <div className="pr-4">
-                <p className="text-lg md:text-2xl font-light">{formatNumber(timeLeft.minutes)}</p>
+                <p className="text-md md:text-2xl font-light">{formatNumber(timeLeft.minutes)}</p>
                 <span className="text-[14px]">Min.</span>
               </div>
               <div className="border-l border-white h-10 mx-2"></div>
               <div>
-                <p className="text-lg md:text-2xl font-light">{formatNumber(timeLeft.seconds)}</p>
+                <p className="text-md md:text-2xl font-light">{formatNumber(timeLeft.seconds)}</p>
                 <span className="text-[14px]">Sec.</span>
               </div>
             </div>

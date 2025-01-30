@@ -140,7 +140,7 @@ const App = () => {
                 <h2 className="text-xl font-bold">Sandals</h2>
 
 
-                <button className="bg-transparent hover:bg-gray-700 text-white font-bold py-1 rounded text-[13px] -mr-[100px] ">
+                <button className="bg-transparent hover:bg-gray-700 text-white font-bold py-1 px-2 rounded text-[13px] -mr-[100px] ">
                   CHECK RATES <br />
                   <span className={`text-[11px]`}>& AVAILABILITY</span>
                 </button>
@@ -179,7 +179,7 @@ const App = () => {
         </AnimatePresence>
       </header>
 
-      <section className="relative h-[500px] md:h-[750px] overflow-hidden">
+      <section className="relative h-[560px] md:h-[750px] overflow-hidden">
         <AnimatePresence>
           <motion.div
             key={currentImage}
@@ -187,7 +187,7 @@ const App = () => {
             animate={{ x: "0%" }}
             exit={{ x: "-100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            className="absolute inset-0 w-full h-full bg-cover bg-center "
             style={{
               backgroundImage: `url('${background_images[currentImage]}')`,
               backgroundSize: "cover",
@@ -196,7 +196,7 @@ const App = () => {
           />
         </AnimatePresence>
 
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        {/* <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative flex flex-col items-center justify-center h-full text-center text-white">
           <h2 className="text-4xl md:text-6xl font-bold">Winter Blues</h2>
           <p className="text-xl md:text-2xl mt-4">MADE OF CARIBBEAN</p>
@@ -204,10 +204,10 @@ const App = () => {
           <Button className="mt-6 bg-yellow-500 text-black px-6 py-3 rounded-full">
             View Details
           </Button>
-        </div>
+        </div> */}
 
         {/* Dots Navigation */}
-        <div className="absolute bottom-[50px] left-4 hidden md:flex space-x-2">
+        <div className="absolute bottom-[50px] left-4 flex space-x-2">
           {background_images.map((_, index) => (
             <div
               key={index}
