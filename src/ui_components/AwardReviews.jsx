@@ -74,16 +74,16 @@ const AwardsReviews = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-10">
-      <div className="text-center mb-6">
-        <h2 className="text-[30px] font-bold">AWARDS & REVIEWS</h2>
-        <p className="text-gray-600 text-sm uppercase tracking-widest">
+    <div>
+      <div className="text-center mb-6 bg-gray-100 pt-10">
+        <h2 className="text-[30px] font-bold mb-2">AWARDS & REVIEWS</h2>
+        <p className="text-gray-600 text-sm uppercase tracking-widest mb-8">
           Don't take our word for it, see what others are saying about us
         </p>
         <div className="flex justify-center mt-4">
           <button
             className={`px-[30px] md:px-[70px] py-2 md:py-2  text-[20px]  uppercase  ${activeTab === "awards"
-                ? "bg-blue-500 text-white"
+                ? "bg-white text-black"
                 : "bg-gray-200 text-gray-600"
               }`}
             onClick={() => setActiveTab("awards")}
@@ -92,7 +92,7 @@ const AwardsReviews = () => {
           </button>
           <button
             className={`px-[30px] md:px-[70px] py-2 md:py-4  text-[20px] uppercase  ${activeTab === "reviews"
-                ? "bg-blue-500 text-white"
+                ? "bg-white text-black"
                 : "bg-gray-200 text-gray-600"
               }`}
             onClick={() => setActiveTab("reviews")}

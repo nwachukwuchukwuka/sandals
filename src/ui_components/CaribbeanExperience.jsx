@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import beach_1 from "../assets/beach_1.jpg";
+import Caribbean_destination_pic from "../assets/Caribbean_destination_pic.avif";
 
 const CaribbeanExperience = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +53,7 @@ const CaribbeanExperience = () => {
         {/* Image Section */}
         <div className="">
           <img
-            src={beach_1}
+            src={Caribbean_destination_pic}
             alt="Beautiful Caribbean Beach"
             className="shadow-xl w-full transition duration-300 ease-in-out transform "
           />
