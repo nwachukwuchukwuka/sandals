@@ -124,18 +124,15 @@ const ResortSelector = () => {
                 >
                   Flights Departing From
                 </label>
-                <div className="relative w-full md:w-[300px]">
-  <input
-    type="text"
-    id="departingFrom"
-    className="w-full px-4 py-2 pr-10 text-gray-700 bg-gray-100 rounded-md border-none focus:outline-none focus:ring-0"
-    placeholder="Enter Airport or City"
-    value={departingFrom}
-    onChange={(e) => setDepartingFrom(e.target.value)}
-  />
-  <FaLocationDot className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
-</div>
-
+                <input
+                  type="text"
+                  id="departingFrom"
+                  className="w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-md border-none focus:outline-none focus:ring-0"
+                  placeholder="Enter Airport or City"
+                  value={departingFrom}
+                  onChange={(e) => setDepartingFrom(e.target.value)}
+                />
+                <FaLocationDot />
               </div>
 
               <div className="relative w-full md:w-[300px]">

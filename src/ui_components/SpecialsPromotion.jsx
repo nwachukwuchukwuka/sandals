@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import beach_2 from '../assets/beach_2.jpg'
-import beach_3 from '../assets/beach_3.jpg'
-import beach_4 from '../assets/beach_4.jpg'
+
 import specials_promotion_1 from '../assets/specials_promotion_1.webp'
 import specials_promotion_2 from '../assets/specials_promotion_2.webp'
 import specials_promotion_3 from '../assets/specials_promotion_3.avif'

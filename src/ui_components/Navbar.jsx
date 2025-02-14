@@ -124,7 +124,7 @@ const App = () => {
               </nav>
             </div>
 
-            <button className="md:bg-gray-400/50 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded md:text-[18px] -mr-[10px] md:mr-0 leading-tight">
+            <button className="md:bg-gray-400/50 hover:bg-gray-700 text-white font-semibold py-2 px-4  md:text-[18px] -mr-[10px] md:mr-0 leading-tight">
               CHECK RATES <br />
               <span
                 className={`${
@@ -235,3 +235,11 @@ const App = () => {
 };
 
 export default App;
+
+
+
+
+
+
+
+      

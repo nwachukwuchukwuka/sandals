@@ -40,3 +40,44 @@ export const sandals_vacation_images = [
   { image: bars_resorts, content: "Up to 13 Bars per Resort" },
   { image: round_trips, content: "Roundtrip Airport Transfers" },
 ]
+
+
+export const carousel_data = [
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_sgo_465ec21762.jpg",
+    place: "Jamaica",
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_smb_007cf85eb9.jpg",
+    place: "Jamaica",
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
+    place: "Jamaica",
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
+    place: "Jamaica",
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
+    place: "Jamaica",
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
+    place: "Saint Vincent",
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
+    place: "Saint Vincent",
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
+    place: "Sunset Paradise 3",
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
+    place: "Sunset Paradise 3",
+  },
+  // Add more objects with text for other images
+];

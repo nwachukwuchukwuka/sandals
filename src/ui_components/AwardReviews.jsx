@@ -75,7 +75,7 @@ const AwardsReviews = () => {
 
   return (
     <div>
-      <div className="text-center mb-6 bg-gray-100 pt-10">
+      <div className="text-center bg-gray-100 pt-10">
         <h2 className="text-[30px] font-bold mb-2">AWARDS & REVIEWS</h2>
         <p className="text-gray-600 text-sm uppercase tracking-widest mb-8">
           Don't take our word for it, see what others are saying about us
