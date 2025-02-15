@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { FaLocationDot } from "react-icons/fa6";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { departingFlight } from "../constants/constants";
 
 const resorts = {
   JAMAICA: [
@@ -37,6 +38,32 @@ const ResortSelector = () => {
     setSelectedResort({ region, resort });
     setIsDropdownOpen(false);
   };
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState("Enter Airpot or City");
+
+
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleFlightDropdown = () => setIsOpen((prev) => !prev);
+
+  const handleOptionSelect = (option) => {
+    setSelected(option);
+    setIsOpen(false);
+  };
+
+
 
   return (
     <div className="relative w-full max-w-[85%] mx-auto md:-mt-6 bg-white p-4 md:p-8 shadow-lg -mt-8">
@@ -124,15 +151,30 @@ const ResortSelector = () => {
                 >
                   Flights Departing From
                 </label>
-                <input
-                  type="text"
-                  id="departingFrom"
-                  className="w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-md border-none focus:outline-none focus:ring-0"
-                  placeholder="Enter Airport or City"
-                  value={departingFrom}
-                  onChange={(e) => setDepartingFrom(e.target.value)}
-                />
-                <FaLocationDot />
+                <div className="relative w-[250px]" ref={dropdownRef}>
+                  {/* Dropdown Toggle Button */}
+                  <button
+                    onClick={toggleFlightDropdown}
+                    className="w-full bg-gray-100 rounded-md p-2 border border-gray-300 text-left"
+                  >
+                    {selected}
+                  </button>
+                  {/* Options Container */}
+                  {isOpen && (
+                    <div className="absolute  mt-1 w-full bg-white rounded-md shadow-lg max-h-[400px] overflow-y-auto z-10">
+                      {departingFlight.map((option, index) => (
+                        <div
+                          key={index}
+                          onClick={() => handleOptionSelect(option)}
+                          className="p-2 hover:bg-gray-200 cursor-pointer"
+                        >
+                          {option}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <FaLocationDot size={20} className="absolute top-[50px] right-2 transform -translate-y-1/2 text-gray-500" />
               </div>
 
               <div className="relative w-full md:w-[300px]">
@@ -158,7 +200,7 @@ const ResortSelector = () => {
 
         {/* Rates & Availability Button */}
         <div className="w-full md:w-auto mt-4 md:mt-0">
-          {" "}
+      
           {/* Margin top for mobile */}
           <button className="w-full text-sm bg-black text-white px-8 py-2 font-semibold">
             RATES & AVAILABILITY
@@ -173,24 +215,42 @@ const ResortSelector = () => {
       <div className="hidden md:block">
         {includeFlights && (
           <div className="mt-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-            <div className="relative w-full md:w-[300px]">
+
+            <div className="relative w-full md:w-[350px]">
               <label
                 htmlFor="departingFrom"
                 className="block text-gray-700 text-sm mb-2"
               >
                 Flights Departing From
               </label>
-              <input
-                type="text"
-                id="departingFrom"
-                className="w-full px-4 py-2 text-gray-700 bg-gray-100 rounded-md border-none focus:outline-none focus:ring-0"
-                placeholder="Enter Airport or City"
-                value={departingFrom}
-                onChange={(e) => setDepartingFrom(e.target.value)}
-              />
+              <div className="relative w-full" ref={dropdownRef}>
+                  {/* Dropdown Toggle Button */}
+                  <button
+                    onClick={toggleFlightDropdown}
+                    className="w-full bg-gray-100 rounded-md p-2  text-left text-sm"
+                  >
+                    {selected}
+                  </button>
+                  {/* Options Container */}
+                  {isOpen && (
+                    <div className="absolute mt-1 w-full bg-white rounded-md shadow-lg max-h-[300px] overflow-y-auto z-10">
+                      {departingFlight.map((option, index) => (
+                        <div
+                          key={index}
+                          onClick={() => handleOptionSelect(option)}
+                          className="p-1 hover:bg-gray-200 cursor-pointer text-sm"
+                        >
+                          {option}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <FaLocationDot size={20} className="absolute top-[45px] right-2 transform -translate-y-1/2 text-gray-500" />
+
             </div>
 
-            <div className="relative w-full md:w-[300px]">
+            <div className="relative w-full md:w-[350px]">
               <label
                 htmlFor="flightClass"
                 className="block text-gray-700 text-sm mb-2"
@@ -207,6 +267,7 @@ const ResortSelector = () => {
                 <option>First Class/Business</option>
               </select>
             </div>
+
           </div>
         )}
       </div>

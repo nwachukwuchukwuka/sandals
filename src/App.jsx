@@ -18,6 +18,7 @@ const App = () => {
   return (
   
     <div className="bg-gray-">
+      {/* <Prac /> */}
       <Navbar />
       <Hero />
       <ResortSelector />

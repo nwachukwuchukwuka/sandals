@@ -1,12 +1,8 @@
 import { useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosStar } from "react-icons/io";
+import {IoIosArrowBack, IoIosArrowForward, IoIosStar } from "react-icons/io";
 import { FaStarHalf } from "react-icons/fa";
 import { carousel_data } from "../constants/constants";
-import { ChevronRight } from "lucide-react";
-import { ChevronLeft } from "lucide-react";
-
+import { ChevronRight, ChevronLeft } from "lucide-react";
 
 function LocationCarousel() {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -36,25 +32,46 @@ function LocationCarousel() {
     }
   };
 
+  const handleLocationClick = (location) => {
+    const index = carousel_data.findIndex(
+      (item) => item.place.toUpperCase() === location
+    );
+    if (index !== -1) {
+      setCurrentIndex(index);
+    }
+  };
+
+  const LOCATIONS = [
+    "JAMAICA",
+    "SAINT VINCENT",
+    "CURAÇAO",
+    "SAINT LUCIA",
+    "BAHAMAS",
+    "ANTIGUA",
+    "GRENADA",
+    "BARBADOS",
+  ];
+
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <div className="text-center bg-gray-100 pt-[100px]">
         <h1 className="text-2xl font-bold">17 ALL-INCLUSIVE RESORTS</h1>
-        <p className="text-gray-900 uppercase text-sm  tracking-widest">
+        <p className="text-gray-900 uppercase text-sm tracking-widest">
           On the caribbean’s best beaches
         </p>
 
         <div className="max-w-[80%] mx-auto mt-6 flex justify-center items-center gap-4">
           <p className="text-lg">Our Sandals Locations: </p>
           <div>
-            <button className="mx-2 uppercase font-bold">JAMAICA</button>
-            <button className="mx-2 uppercase font-bold">SAINT VINCENT</button>
-            <button className="mx-2 uppercase font-bold">CURAÇAO</button>
-            <button className="mx-2 uppercase font-bold">SAINT LUCIA</button>
-            <button className="mx-2 uppercase font-bold">BAHAMAS</button>
-            <button className="mx-2 uppercase font-bold">ANTIGUA</button>
-            <button className="mx-2 uppercase font-bold">GRENADA</button>
-            <button className="mx-2 uppercase font-bold">BARBADOS</button>
+            {LOCATIONS.map((location, index) => (
+              <button
+                key={index}
+                onClick={() => handleLocationClick(location)}
+                className="mx-2 uppercase font-bold hover:text-blue-500 transition-colors"
+              >
+                {location}
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -75,20 +92,22 @@ function LocationCarousel() {
                     currentIndex === index ? "opacity-100" : "opacity-30"
                   }`}
                 >
+                  <div className="absolute top-[400px] text-[30px] uppercase pl-10 text-white bg-black/60 w-[300px]">
+                    {image.place}
+                  </div>
                   <img
                     src={image.url}
                     alt={`Slide ${index + 1}`}
                     className="w-full h-[550px] object-cover"
                   />
-
                   <div className="absolute -bottom-[170px] bg-white p-6 shadow-md w-[65%]">
                     <div className="flex justify-between mb-4">
                       <div>
-                        <h1 className="text-lg font-bold">
-                          SANDALS SOUTH COAST
+                        <h1 className="text-lg font-bold uppercase">
+                          {image.name}
                         </h1>
-                        <p className="text-gray-800 text-[10px] font-bold">
-                          OCHIO ROSE - JAMAICA
+                        <p className="text-gray-800 text-[10px] font-bold uppercase">
+                          {image.subName} - {image.place}
                         </p>
                       </div>
                       <div className="flex justify-between items-center">
@@ -100,34 +119,31 @@ function LocationCarousel() {
                           <FaStarHalf className="text-blue-700" />
                         </p>
                         <p className="text-gray-800 font-bold text-[11px]">
-                          808 reviews
+                          {image.reviews} reviews
                         </p>
                       </div>
                     </div>
                     <p className="text-gray-800">
-                      An exotic, unspoiled hideaway in the heart of 's exclusive
-                      Pink Gin Beach. Featuring breathtaking innovations like
-                      pools suspended in the sky, and where living rooms are
-                      found in pools.
+                      {image.text}
                     </p>
 
                     <div className="mt-6 flex justify-between">
                       <p>
-                        FROM{" "}
-                        <span className="font-bold text-[25px]"> $362 </span>
+                        FROM
+                        <span className="font-bold text-[25px]"> ${image.price} </span>
                         PP/PN
                       </p>
                       <div className="flex gap-4 items-center">
-                        <button className=" text-xs font-bold flex items-center gap-1">
-                          VIEW RESORT
+                        <button className="text-xs font-bold flex items-center gap-1 uppercase">
+                          {image.resortLink}
                           <IoIosArrowForward
                             size={18}
                             className="text-blue-500"
                           />
                         </button>
                         <div className="h-[28px] w-[2px] bg-gray-300"></div>
-                        <button className=" text-xs font-bold flex items-center gap-1">
-                          VIEW ROOMS{" "}
+                        <button className="text-xs font-bold flex items-center gap-1 uppercase">
+                          {image.roomLink}
                           <IoIosArrowForward
                             size={18}
                             className="text-blue-500"
@@ -135,7 +151,7 @@ function LocationCarousel() {
                         </button>
                       </div>
                     </div>
-                    <button className=" absolute -right-[380px] bottom-[120px] bg-black px-[30px] text-white text-sm py-1 mt-4 font-semibold">
+                    <button className="absolute -right-[380px] bottom-[120px] bg-black px-[30px] text-white text-sm py-1 mt-4 font-semibold">
                       VIEW ALL RESORTS
                     </button>
                   </div>
@@ -177,10 +193,9 @@ function LocationCarousel() {
           onClick={nextSlide}
           className="absolute -right-[40px] top-1/3 transform -translate-y-1/2 rounded-full text-gray-800"
         >
-         <ChevronRight strokeWidth={0.5} size={120} />
+          <ChevronRight strokeWidth={0.5} size={120} />
         </button>
       </div>
-    
     </div>
   );
 }
