@@ -11,8 +11,8 @@ import FeaturedResorts from "./ui_components/FeaturedResorts";
 import WholeFamily from "./ui_components/WholeFamily";
 import AwardsReviews from "./ui_components/AwardReviews";
 import SubFooter from "./ui_components/SubFooter";
-import Footer from "./ui_components/Footer";
 import Prac from "./ui_components/Prac";
+import Footer from "./ui_components/Footer";
 
 const App = () => {
   return (
@@ -27,7 +27,7 @@ const App = () => {
       <SandalsVacationIncludes />
       <LocationCarousel />
       <div className="bg-gray-100">
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-5 max-w-[90%]  md:max-w-[85%] mx-auto pb-[80px] pt-[100px]">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-5 max-w-[90%]  md:max-w-[85%] mx-auto pb-[80px] md:pt-[100px]">
           <div className="w-full md:w-[350px]">
             <SpecialsPromotion />
           </div>

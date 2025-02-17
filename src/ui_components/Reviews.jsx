@@ -11,15 +11,13 @@ import { IoIosStar } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
 import { reviewsCarouselItems } from "@/constants/constants";
 function Reviews() {
- 
-
   return (
     <div>
       <Carousel
         opts={{
           align: "start",
         }}
-        className="w-full max-w-[80%] mx-auto "
+        className=" max-w-[70%] md:max-w-[80%] mx-auto "
       >
         <CarouselContent>
           {reviewsCarouselItems.map((item) => (
@@ -29,7 +27,9 @@ function Reviews() {
                   <CardContent className="flex aspect-square items-center justify-center p-6">
                     <div className="">
                       <h1 className="text-2xl font-bold">{item.hotelName}</h1>
-                      <p className="text-gray-600 uppercase text-sm">{item.location}</p>
+                      <p className="text-gray-600 uppercase text-sm">
+                        {item.location}
+                      </p>
                       <div className="my-2 flex items-center gap-2">
                         {[...Array(item.rating)].map((_, index) => (
                           <IoIosStar key={index} className="text-blue-700" />
@@ -53,13 +53,14 @@ function Reviews() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="border-none" />
-        <CarouselNext className="border-none" />
+        <div className="">
+        {/* <div className="hidden md:block"> */}
+          <CarouselPrevious className="border-none" />
+          <CarouselNext className="border-none" />
+        </div>
       </Carousel>
     </div>
   );
 }
 
 export default Reviews;
-
-

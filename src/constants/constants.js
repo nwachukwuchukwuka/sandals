@@ -17,6 +17,12 @@ import premium_wines from '../assets/premium_wines.svg'
 import bars_resorts from '../assets/bars_resorts.svg'
 import round_trips from '../assets/round_trips.svg'
 
+import award from "../assets/award.webp";
+import award_logo_1 from "../assets/award_logo_1.svg";
+import award_logo_2 from "../assets/award_logo_2.png";
+import award_logo_3 from "../assets/award_logo_3.svg";
+import award_logo_4 from "../assets/award_logo_4.avif";
+import award_logo_5 from "../assets/award_logo_5.avif";
 
 
 // export const background_images = [bg_image1, beach_2, beach_3, beach_4, beach_5, beach_6, beach_7];
@@ -177,6 +183,39 @@ export const carousel_data = [
   },
   {
     url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
+    place: "GRENADA",
+    name: "Sandals Grenada",
+    subName: "St. George's",
+    text: "ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    reviews: "9876",
+    price: "289",
+    resortLink: "view resort",
+    roomLink: "view room"
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
+    place: "GRENADA",
+    name: "Sandals Grenada",
+    subName: "St. George's",
+    text: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    reviews: "9876",
+    price: "289",
+    resortLink: "view resort",
+    roomLink: "view room"
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
+    place: "GRENADA",
+    name: "Sandals Grenada",
+    subName: "St. George's",
+    text: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    reviews: "9876",
+    price: "289",
+    resortLink: "view resort",
+    roomLink: "view room"
+  },
+  {
+    url: "https://cdn.sandals.com/sandals/v13/images/EN/uploads/landscape_swh_3306c3a8e0.jpg",
     place: "BARBADOS",
     name: "Sandals Barbados",
     subName: "St. Lawrence Gap",
@@ -270,5 +309,99 @@ export const reviewsCarouselItems = [
     description: "Sandals Luxury All-Inclusive Resort",
     review: "Innovative restaurants and rooftop pool made our stay memorable. The bowling alley was a unique touch. Service was impeccable throughout our stay.",
     timeAgo: "3 MONTHS AGO ON TRIPADVISOR"
+  },
+];
+
+export const awardsCarouselData = [
+  {
+    logo: award_logo_1,
+    background: award,
+    title: ["BEST INCLUDED AMENITY", "READERS' CHOICE", "SCUBA DIVING"],
+    subtitle: "ISLANDS ALL-INCLUSIVE AWARDS 2020",
+  },
+  {
+    logo: award_logo_2,
+    background: award,
+    title: ["BEST INCLUDED AMENITY", "READERS' CHOICE", "SCUBA DIVING"],
+    subtitle: "ISLANDS ALL-INCLUSIVE AWARDS 2020",
+  },
+  {
+    logo: award_logo_3,
+    background: award,
+    title: ["BEST INCLUDED AMENITY", "READERS' CHOICE", "SCUBA DIVING"],
+    subtitle: "ISLANDS ALL-INCLUSIVE AWARDS 2020",
+  },
+  {
+    logo: award_logo_4,
+    background: award,
+    title: ["BEST INCLUDED AMENITY", "READERS' CHOICE", "SCUBA DIVING"],
+    subtitle: "ISLANDS ALL-INCLUSIVE AWARDS 2020",
+  },
+  {
+    logo: award_logo_5,
+    background: award,
+    title: ["BEST INCLUDED AMENITY", "READERS' CHOICE", "SCUBA DIVING"],
+    subtitle: "ISLANDS ALL-INCLUSIVE AWARDS 2020",
+  },
+];
+
+
+export const footerLinks = [
+  {
+    title: "Book a Vacation",
+    links: [
+      { text: "Book Online", href: "#" },
+      { text: "Get a Price Quote", href: "#" },
+      { text: "View Specials", href: "#" },
+      { text: "Find All-Inclusive Resort", href: "#" },
+      { text: "Find a Travel Agent", href: "#" },
+      { text: "Sandals Specialists", href: "#" },
+    ],
+  },
+  {
+    title: "Already Booked?",
+    links: [
+      { text: "Check-in Online", href: "#" },
+      { text: "Book Optional Extras", href: "#" },
+      { text: "Balance Payment", href: "#" },
+      { text: "Butler Preferences", href: "#" },
+    ],
+  },
+  {
+    title: "All-Inclusive Resorts",
+    links: [
+      { text: "View All Resorts", href: "#" },
+      { text: "Saint Vincent Resorts", href: "#" },
+      { text: "Jamaica Resorts", href: "#" },
+      { text: "Saint Lucia Resorts", href: "#" },
+      { text: "Antigua Resorts", href: "#" },
+      { text: "Bahamas Resorts", href: "#" },
+    ],
+  },
+  {
+    title: "Weddings & Celebrations",
+    links: [
+      { text: "Destination Weddings", href: "#" },
+      { text: "Wedding Venues", href: "#" },
+      { text: "Inquire", href: "#" },
+      { text: "Honeymoons", href: "#" },
+      { text: "Elopements", href: "#" },
+      { text: "Anniversaries", href: "#" },
+    ],
+  },
+  {
+    title: "About Sandals",
+    links: [
+      { text: "Destination Weddings", href: "#" },
+      { text: "Wedding Venues", href: "#" },
+      { text: "Inquire", href: "#" },
+      { text: "Honeymoons", href: "#" },
+      { text: "Elopements", href: "#" },
+      { text: "Anniversaries", href: "#" },
+      { text: "Accessibility", href: "#" },
+      { text: "News & Media", href: "#" },
+      { text: "Affiliates", href: "#" },
+      { text: "Site Map", href: "#" },
+    ],
   },
 ];

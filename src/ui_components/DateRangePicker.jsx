@@ -1,56 +1,82 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+"use client";
+
+import { useState } from "react";
+import { format } from "date-fns";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { CalendarIcon } from "lucide-react";
 
 const DateRangePicker = () => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [date, setDate] = useState({
+    from: undefined,
+    to: undefined,
+  });
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClear = () => {
+    setDate({ from: undefined, to: undefined });
+  };
+
+  const handleApply = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <div className="relative w-full max-w-[400px] mx-auto mt-8 bg-white p-4 rounded-md shadow-lg">
-      <h3 className="text-lg font-semibold text-gray-700 mb-4">Select Check-In & Check-Out Dates</h3>
-      <div className="flex space-x-4 items-center">
-        {/* Start Date Picker */}
-        <div className="w-1/2">
-          <label className="block text-sm font-medium text-gray-600 mb-2">Check-In</label>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-            placeholderText="Start Date"
-            className="w-full border border-gray-300 px-4 py-2 text-gray-700 bg-white rounded-md"
+    <div className="grid gap-2 w-full md:w-[300px]">
+      <Popover open={isOpen} onOpenChange={setIsOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            id="date"
+            variant="outline"
+            className="w-full md:w-[300px] justify-start text-left font-normal bg-gray-100 border-none"
+          >
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            {date?.from ? (
+              date.to ? (
+                <>
+                  {format(date.from, "LLL dd, y")} -{" "}
+                  {format(date.to, "LLL dd, y")}
+                </>
+              ) : (
+                format(date.from, "LLL dd, y")
+              )
+            ) : (
+              <span>Check-in & Check-out</span>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="md:w-[550px] md:p-10 flex flex-col gap-4" align="start">
+          <Calendar
+            initialFocus
+            mode="range"
+            defaultMonth={new Date()}
+            selected={date}
+            onSelect={setDate}
+            numberOfMonths={2}
           />
-        </div>
-
-        {/* End Date Picker */}
-        <div className="w-1/2">
-          <label className="block text-sm font-medium text-gray-600 mb-2">Check-Out</label>
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            placeholderText="End Date"
-            className="w-full border border-gray-300 px-4 py-2 text-gray-700 bg-white rounded-md"
-          />
-        </div>
-      </div>
-
-      {/* Display Selected Dates */}
-      <div className="mt-4 text-gray-700">
-        {startDate && endDate ? (
-          <p>
-            You selected: <strong>{startDate.toLocaleDateString()}</strong> to{" "}
-            <strong>{endDate.toLocaleDateString()}</strong>
-          </p>
-        ) : (
-          <p className="text-sm text-gray-500">Please select a date range.</p>
-        )}
-      </div>
+          <div className="flex justify-end gap-2 px-4 pb-4">
+            <Button 
+              variant="secondary" 
+              onClick={handleClear}
+              disabled={!date?.from}
+            >
+              Clear
+            </Button>
+            <Button 
+              variant="default" 
+              onClick={handleApply}
+              disabled={!date?.from || !date?.to}
+            >
+              Apply
+            </Button>
+          </div>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 };

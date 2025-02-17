@@ -10,7 +10,7 @@ const CaribbeanSection = () => {
         {/* Text Section */}
         <div className="md:w-3/4 md:border-r pr-6 border-gray-400">
           <h2 className="text-lg md:text-3xl font-bold mb-4">FIND YOUR CARIBBEAN HERE</h2>
-          <p className="text-gray-900 leading-relaxed md:mb-4 text-[14px]">
+          <p className="text-gray-900 leading-relaxed md:mb-4 text-[13px] md:text-[14px]">
             No other place in the world captures the imagination more than the Caribbean. People
             call it paradise. We call it home. Our <span className="font-semibold">all-inclusive resorts</span> are set along the
             most gorgeous tropical settings and exquisite beaches in <span className="font-semibold">Saint Lucia, Jamaica, Antigua,
@@ -25,7 +25,7 @@ const CaribbeanSection = () => {
             </button>
           )}
           {(showMore || window.innerWidth >= 768) && (
-            <p className="text-gray-900 mb-4 text-[14px]">
+            <p className="text-gray-900 mb-4 text-[13px] md:text-[14px]">
               Stay, play, and indulge to your heart’s content at any of our Caribbean resorts and
               experience the best the islands have to offer – featuring unlimited specialty
               restaurants, unique bars serving premium liquors and wines, and every land and water

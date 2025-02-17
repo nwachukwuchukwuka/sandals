@@ -82,7 +82,7 @@ const AwardsReviews = () => {
         </p>
         <div className="flex justify-center mt-4">
           <button
-            className={`px-[30px] md:px-[70px] py-2 md:py-2  text-[20px]  uppercase  ${activeTab === "awards"
+            className={`px-[30px] md:px-[70px] py-1 md:py-3 text-[14px] md:text-[20px]  uppercase  ${activeTab === "awards"
                 ? "bg-white text-black"
                 : "bg-gray-200 text-gray-600"
               }`}
@@ -91,7 +91,7 @@ const AwardsReviews = () => {
             Awards
           </button>
           <button
-            className={`px-[30px] md:px-[70px] py-2 md:py-4  text-[20px] uppercase  ${activeTab === "reviews"
+            className={`px-[30px] md:px-[70px] py-1 md:py-3 text-[14px] md:text-[20px]  uppercase  ${activeTab === "reviews"
                 ? "bg-white text-black"
                 : "bg-gray-200 text-gray-600"
               }`}
