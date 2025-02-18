@@ -34,7 +34,7 @@ const CountdownBanner = () => {
   const formatNumber = (num) => (num < 10 ? `0${num}` : num);
 
   return (
-    <div className="absolute top-[380px] md:top-[580px] right-[10px] md:right-[87px] w-[95%] md:w-[400px] text-white p-4 ">
+    <div className="absolute top-[380px] md:top-[580px] right-[10px] md:right-[87px] w-[95%] md:w-[400px] text-white p-4 z-10 ">
       <div className="flex space-x-4 text-center justify-center bg-black opacity-[70%] pt-2">
         {Object.keys(timeLeft).length > 0 && (
           <>

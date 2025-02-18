@@ -13,6 +13,7 @@ import AwardsReviews from "./ui_components/AwardReviews";
 import SubFooter from "./ui_components/SubFooter";
 import Prac from "./ui_components/Prac";
 import Footer from "./ui_components/Footer";
+import Home from "./ui_components/sandals_saint_vincent/Home";
 
 const App = () => {
   return (
@@ -20,7 +21,7 @@ const App = () => {
     <div className="bg-gray-">
     
       <Navbar />
-      <Hero />
+      {/* <Hero />
       <ResortSelector />
       <CaribbeanSection />
       <CaribbeanExperience />
@@ -41,10 +42,10 @@ const App = () => {
       </div>
 
       <AwardsReviews />
-      <SubFooter />
+      <SubFooter /> */}
+      <Home />
       <Footer />
-      {/* <DateRangePicker />
-      {/* <MyCarousel */}
+  
     </div>
   );
 };
