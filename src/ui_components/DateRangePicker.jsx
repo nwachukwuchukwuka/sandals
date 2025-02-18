@@ -17,6 +17,7 @@ const DateRangePicker = () => {
     to: undefined,
   });
   const [isOpen, setIsOpen] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
 
   const handleClear = () => {
     setDate({ from: undefined, to: undefined });
@@ -33,44 +34,62 @@ const DateRangePicker = () => {
           <Button
             id="date"
             variant="outline"
-            className="w-full md:w-[300px] justify-start text-left font-normal bg-gray-100 border-none"
+            className="w-full  rounded-none justify-between text-left font-normal bg-gray-100 border-none"
           >
-            <CalendarIcon className="mr-2 h-4 w-4" />
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
+                  {format(date.from, "EEE, LLL d, yyyy")} -{" "}
+                  {format(date.to, "EEE, LLL d, yyyy")}
                 </>
               ) : (
-                format(date.from, "LLL dd, y")
+                format(date.from, "EEE, LLL d, yyyy")
               )
             ) : (
-              <span>Check-in & Check-out</span>
+              <span className="text-gray-700">Check-in & Check-out</span>
             )}
+            <CalendarIcon className="mr-2 h-4 w-4" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="md:w-[550px] md:p-10 flex flex-col gap-4" align="start">
+        <PopoverContent
+          className=" sm:w-full flex flex-col gap-4 relative"
+          align="start"
+        >
           <Calendar
             initialFocus
             mode="range"
-            defaultMonth={new Date()}
+            month={currentMonth}
+            onMonthChange={setCurrentMonth}
             selected={date}
             onSelect={setDate}
             numberOfMonths={2}
+            // className="[&_td]:h-16 [&_button]:w-12 [&_button]:h-12 [&_button]:text-lg"
           />
+          <select
+            value={currentMonth.getFullYear()}
+            onChange={(e) => setCurrentMonth(new Date(e.target.value, 0))}
+            className="p-1 cursor-pointer bg-gray-100 border-none w-[62px]  absolute top-[26px] left-[200px] md:left-[230px] text-sm font-medium focus:outline-none"
+          >
+            {[2025, 2026, 2027].map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
           <div className="flex justify-end gap-2 px-4 pb-4">
-            <Button 
-              variant="secondary" 
+            <Button
+              variant="secondary"
               onClick={handleClear}
               disabled={!date?.from}
+              className="w-[150px] rounded-none"
             >
-              Clear
+              Clear Dates
             </Button>
-            <Button 
-              variant="default" 
+            <Button
+              variant="default"
               onClick={handleApply}
               disabled={!date?.from || !date?.to}
+              className="w-[150px] rounded-none"
             >
               Apply
             </Button>

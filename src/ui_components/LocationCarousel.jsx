@@ -8,13 +8,12 @@ function LocationCarousel() {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isMdScreen, setIsMdScreen] = useState(false);
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)"); // Tailwind's default md breakpoint
+    const mediaQuery = window.matchMedia("(min-width: 768px)"); 
     const handleMediaChange = (e) => setIsMdScreen(e.matches);
 
-    // Set initial state
     setIsMdScreen(mediaQuery.matches);
 
-    // Listen for changes
+
     mediaQuery.addEventListener("change", handleMediaChange);
 
     return () => mediaQuery.removeEventListener("change", handleMediaChange);
@@ -207,18 +206,28 @@ function LocationCarousel() {
         </div>
         {/* Navigation Arrows */}
         <button
-          onClick={prevSlide}
-          className=" absolute -left-[40px] top-1/3 transform -translate-y-1/2 rounded-full text-gray-800"
-        >
-          <ChevronLeft strokeWidth={0.5} size={120} />
-        </button>
+        onClick={prevSlide}
+        className={`absolute ${
+          isMdScreen ? "-left-[40px]" : "-left-[20px]"
+        } top-1/3 transform -translate-y-1/2 rounded-full text-gray-800`}
+      >
+        <ChevronLeft 
+          strokeWidth={0.5} 
+          className={isMdScreen ? "w-[120px] h-[120px]" : "w-[60px] h-[60px]"}
+        />
+      </button>
 
-        <button
-          onClick={nextSlide}
-          className=" absolute -right-[40px] top-1/3 transform -translate-y-1/2 rounded-full text-gray-800"
-        >
-          <ChevronRight strokeWidth={0.5} size={120} />
-        </button>
+      <button
+        onClick={nextSlide}
+        className={`absolute ${
+          isMdScreen ? "-right-[40px]" : "-right-[20px]"
+        } top-1/3 transform -translate-y-1/2 rounded-full text-gray-800`}
+      >
+        <ChevronRight 
+          strokeWidth={0.5} 
+          className={isMdScreen ? "w-[120px] h-[120px]" : "w-[60px] h-[60px]"}
+        />
+      </button>
       </div>
     </div>
   );

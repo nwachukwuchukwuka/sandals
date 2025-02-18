@@ -27,7 +27,7 @@ function Awards() {
                   <CardContent className="flex aspect-square items-center justify-center p-6">
                     <div className="">
                       <div key={index} className="md:w-[350px]">
-                        <div className="flex justify-center items-end -mb-4 mr-6 ">
+                        <div className="flex justify-center items-end -mb-4">
                           <img
                             src={awardItem.logo}
                             alt="award_logo_1"
@@ -50,7 +50,7 @@ function Awards() {
                             {awardItem.title.map((line, i) => (
                               <h1 key={i}>{line}</h1>
                             ))}
-                            <p className=" text-[10px] md:text-[11px]">{awardItem.subtitle}</p>
+                            <p className=" text-[9px] md:text-[11px]">{awardItem.subtitle}</p>
                           </div>
                         </div>
                       </div>
@@ -67,8 +67,8 @@ function Awards() {
           <CarouselNext className="border-none" />
         </div>
       </Carousel>
-      <div className="flex justify-center">
-        <button className="bg-black    text-white px-6 py-1 text-[11px] font-bold uppercase">
+      <div className="flex justify-center pb-6">
+        <button className="bg-black text-white px-6 py-1 text-[11px] font-bold uppercase">
           View All Awards
         </button>
       </div>

@@ -1,5 +1,3 @@
-
-
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { FaLocationDot } from "react-icons/fa6";
@@ -44,7 +42,6 @@ const ResortSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Enter Airpot or City");
 
-
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -65,10 +62,12 @@ const ResortSelector = () => {
     setIsOpen(false);
   };
 
-
-
   return (
-    <div className={`relative w-full max-w-[85%] mx-auto mb-4 md:-mt-6 bg-white p-4 md:p-8 shadow-lg -mt-8 ${includeFlights ? 'md:h-[200px]' : 'md:h-[120px]'}`}>
+    <div
+      className={`relative w-full max-w-[85%] mx-auto mb-4 md:-mt-6 bg-white p-4 md:p-8 shadow-lg -mt-8 ${
+        includeFlights ? "md:h-[200px]" : "md:h-[120px]"
+      }`}
+    >
       <div className="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-4">
         {/* Select Resort Dropdown */}
         <div className="relative w-full md:w-[300px]">
@@ -116,17 +115,7 @@ const ResortSelector = () => {
             )}
           </AnimatePresence>
         </div>
-
-        {/* Check-In & Check-Out Input */}
-        {/* <div className="w-full md:w-[300px]">
-          <input
-            type="text"
-            placeholder="Check-In & Check-Out"
-            className="w-full px-4 py-2 text-gray-700 bg-gray-100  border-none focus:outline-none focus:ring-0"
-            value={checkInOutDates}
-            onChange={(e) => setCheckInOutDates(e.target.value)}
-          />
-        </div> */}
+        {/* date range picker components */}
         <DateRangePicker />
 
         {/* Include Flights Checkbox */}
@@ -142,23 +131,22 @@ const ResortSelector = () => {
             Include Roundtrip Flights
           </label>
         </div>
-   {/* Conditionally Render Flight Inputs for big screens */}
-   <div className="md:absolute md:top-[100px] md:left-4 w-full">
-        {includeFlights && (
-          <div className="mt-2  flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-
-            <div className="relative w-full md:w-[350px]">
-              <label
-                htmlFor="departingFrom"
-                className="block text-gray-700 text-sm mb-2"
-              >
-                Flights Departing From
-              </label>
-              <div className="relative w-full" ref={dropdownRef}>
+        {/* Conditionally Render Flight Inputs for big screens */}
+        <div className="md:absolute md:top-[100px] md:left-4 w-full">
+          {includeFlights && (
+            <div className="mt-2  flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+              <div className="relative w-full md:w-[350px]">
+                <label
+                  htmlFor="departingFrom"
+                  className="block text-gray-700 text-sm mb-2"
+                >
+                  Flights Departing From
+                </label>
+                <div className="relative w-full" ref={dropdownRef}>
                   {/* Dropdown Toggle Button */}
                   <button
                     onClick={toggleFlightDropdown}
-                    className="w-full bg-gray-100  p-2  text-left text-sm"
+                    className="w-full bg-gray-100  p-2 text-gray-700 text-left text-sm"
                   >
                     {selected}
                   </button>
@@ -177,36 +165,35 @@ const ResortSelector = () => {
                     </div>
                   )}
                 </div>
-                <FaLocationDot size={20} className="absolute top-[45px] right-2 transform -translate-y-1/2 text-gray-500" />
+                <FaLocationDot
+                  size={20}
+                  className="absolute top-[45px] right-2 transform -translate-y-1/2 text-gray-500"
+                />
+              </div>
 
+              <div className="relative w-full md:w-[350px]">
+                <label
+                  htmlFor="flightClass"
+                  className="block text-gray-700 text-sm mb-2"
+                >
+                  Search Flights By
+                </label>
+                <select
+                  id="flightClass"
+                  className="w-full px-4 py-2 text-gray-700 bg-gray-100 border-none focus:outline-none focus:ring-0 text-sm"
+                  value={flightClass}
+                  onChange={(e) => setFlightClass(e.target.value)}
+                >
+                  <option>Economy/Coach</option>
+                  <option>First Class/Business</option>
+                </select>
+              </div>
             </div>
-
-            <div className="relative w-full md:w-[350px]">
-              <label
-                htmlFor="flightClass"
-                className="block text-gray-700 text-sm mb-2"
-              >
-                Search Flights By
-              </label>
-              <select
-                id="flightClass"
-                className="w-full px-4 py-2 text-gray-700 bg-gray-100 border-none focus:outline-none focus:ring-0"
-                value={flightClass}
-                onChange={(e) => setFlightClass(e.target.value)}
-              >
-                <option>Economy/Coach</option>
-                <option>First Class/Business</option>
-              </select>
-            </div>
-
-          </div>
-        )}
-      </div>
-      
+          )}
+        </div>
 
         {/* Rates & Availability Button */}
         <div className="w-full md:w-auto  md:mt-0">
-      
           {/* Margin top for mobile */}
           <button className="w-full text-sm bg-black text-white px-8 py-2 font-semibold">
             RATES & AVAILABILITY
@@ -216,8 +203,6 @@ const ResortSelector = () => {
           </p>
         </div>
       </div>
-
-   
     </div>
   );
 };

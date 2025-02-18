@@ -17,7 +17,7 @@ function Reviews() {
         opts={{
           align: "start",
         }}
-        className=" max-w-[70%] md:max-w-[80%] mx-auto "
+        className=" max-w-[95%] md:max-w-[80%] mx-auto "
       >
         <CarouselContent>
           {reviewsCarouselItems.map((item) => (
@@ -54,9 +54,9 @@ function Reviews() {
           ))}
         </CarouselContent>
         <div className="">
-        {/* <div className="hidden md:block"> */}
-          <CarouselPrevious className="border-none" />
-          <CarouselNext className="border-none" />
+          {/* <div className="hidden md:block"> */}
+          <CarouselPrevious className="border-none mx-10 md:mx-0" />
+          <CarouselNext className="border-none mx-10 md:mx-0" />
         </div>
       </Carousel>
     </div>
