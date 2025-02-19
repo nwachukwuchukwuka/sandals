@@ -2,7 +2,7 @@ import React from "react";
 
 const SubNav = () => {
   return (
-    <div className="bg-white shadow-lg">
+    <div className="bg-white shadow-[0_0_10px_0_rgba(0,0,0,0.1)]">
       <div className="max-w-[85%] mx-auto flex justify-between items-center p-4">
         <div>
           <div className="font-bold">SANDALS SAINT VINCENT</div>
@@ -31,6 +31,6 @@ const SubNav = () => {
       </div>
     </div>
   );
-};
+};                                                                                                                      
 
 export default SubNav;
