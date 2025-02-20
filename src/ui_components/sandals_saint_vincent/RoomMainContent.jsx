@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import RoomMainContentHeader from "../RoomMainContentHeader";
 import RoomCardOne from "./RoomCardOne";
 import RoomCardTwo from "./RoomCardTwo";
@@ -9,6 +9,20 @@ const RoomMainContent = ({
   selectedCategory, 
   setSelectedCategory 
 }) => {
+  const [roomCounts, setRoomCounts] = useState({
+    totalRooms: 0,
+    filteredRooms: 0
+  });
+  const [sortOrder, setSortOrder] = useState('low-to-high');
+
+  const handleRoomCountsChange = (counts) => {
+    setRoomCounts(counts);
+  };
+
+  const handleSortChange = (value) => {
+    setSortOrder(value);
+  };
+
   return (
     <div className="space-y-4">
       <RoomMainContentHeader 
@@ -16,11 +30,23 @@ const RoomMainContent = ({
         setActiveView={setActiveView}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
+        totalRooms={roomCounts.totalRooms}
+        filteredRooms={roomCounts.filteredRooms}
+        onSortChange={handleSortChange}
+        sortOrder={sortOrder}
       />
       {activeView === "card" ? (
-        <RoomCardTwo selectedCategory={selectedCategory} />
+        <RoomCardTwo 
+          selectedCategory={selectedCategory} 
+          onRoomCountsChange={handleRoomCountsChange}
+          sortOrder={sortOrder}
+        />
       ) : (
-        <RoomCardOne selectedCategory={selectedCategory} />
+        <RoomCardOne 
+          selectedCategory={selectedCategory} 
+          onRoomCountsChange={handleRoomCountsChange}
+          sortOrder={sortOrder}
+        />
       )}
     </div>
   );

@@ -11,6 +11,53 @@ const RoomSidebar = ({ selectedCategory, setSelectedCategory }) => {
     roomSpecials: true,
   });
 
+  // Define disabled checkboxes for each category
+  const disabledCheckboxes = {
+    "Butler Elite": [
+      "Pool",
+      "Partial Oceanview",
+      "Swim-up Suite",
+      "Balcony",
+      "Wheelchair Accessible",
+      "In-Room Bar w/Liquor",
+    ],
+    "Club Sandals": [
+      "Beachfront",
+      "Oceanview",
+      "Oceanfront",
+      "Walkout Suite",
+      "One-Bedroom Suite",
+      "Private Pool Suite",
+      "Villa Suite",
+      "Over-The-Water Villa",
+      "Two Story Suite",
+      "In-Room Bar w/ Premium Liquor",
+      "Private Pool",
+    ],
+    "Sandals Luxury": [
+      "Beachfront",
+      "Oceanview",
+      "Oceanfront",
+      "Swim-up Suite",
+      "Walkout Suite",
+      "One-Bedroom Suite",
+      "Private Pool Suite",
+      "Villa Suite",
+      "Over-The-Water Villa",
+      "Two Story Suite",
+      "In-Room Bar w/Liquor",
+      "Room Service",
+      "Patio",
+      "In-Room Bar w/ Premium Liquor",
+      "Private Pool",
+    ],
+  };
+
+  const isCheckboxDisabled = (label) => {
+    if (!selectedCategory || selectedCategory === "View All") return false;
+    return disabledCheckboxes[selectedCategory]?.includes(label) || false;
+  };
+
   const toggleSection = (sectionName) => {
     setOpenSections((prev) => ({
       ...prev,
@@ -115,26 +162,21 @@ const RoomSidebar = ({ selectedCategory, setSelectedCategory }) => {
               : "max-h-0 opacity-0"
           }`}
         >
-          <label className="flex items-center">
-            <input type="checkbox" name="roomView" className="mr-2" />
-            Pool
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomView" className="mr-2" />
-            Tropical Garden
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomView" className="mr-2" />
-            Partial OceanView
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomView" className="mr-2" />
-            Beachfront
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomView" className="mr-2" />
-            Oceanfront
-          </label>
+          {["Pool", "Tropical Garden", "Partial Oceanview", "Beachfront", "Oceanview", "Oceanfront"].map(
+            (view) => (
+              <label key={view} className="flex items-center">
+                <input
+                  type="checkbox"
+                  name="roomView"
+                  className="mr-2"
+                  disabled={isCheckboxDisabled(view)}
+                />
+                <span className={isCheckboxDisabled(view) ? "text-gray-400" : ""}>
+                  {view}
+                </span>
+              </label>
+            )
+          )}
         </div>
       </div>
 
@@ -160,34 +202,27 @@ const RoomSidebar = ({ selectedCategory, setSelectedCategory }) => {
               : "max-h-0 opacity-0"
           }`}
         >
-          <label className="flex items-center">
-            <input type="checkbox" name="roomType" className="mr-2" />
-            Swim-up Suite
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomType" className="mr-2" />
-            Walkout Suite
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomType" className="mr-2" />
-            One-Bedroom Suite
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomType" className="mr-2" />
-            Private Pool Suite
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomType" className="mr-2" />
-            Villa Suite
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomType" className="mr-2" />
-            Over-The-Water Villa
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomType" className="mr-2" />
-            Two Story Suite
-          </label>
+          {[
+            "Swim-up Suite",
+            "Walkout Suite",
+            "One-Bedroom Suite",
+            "Private Pool Suite",
+            "Villa Suite",
+            "Over-The-Water Villa",
+            "Two Story Suite",
+          ].map((type) => (
+            <label key={type} className="flex items-center">
+              <input
+                type="checkbox"
+                name="roomType"
+                className="mr-2"
+                disabled={isCheckboxDisabled(type)}
+              />
+              <span className={isCheckboxDisabled(type) ? "text-gray-400" : ""}>
+                {type}
+              </span>
+            </label>
+          ))}
         </div>
       </div>
 
@@ -213,38 +248,28 @@ const RoomSidebar = ({ selectedCategory, setSelectedCategory }) => {
               : "max-h-0 opacity-0"
           }`}
         >
-          <label className="flex items-center">
-            <input type="checkbox" name="roomFeature" className="mr-2" />
-            Balcony
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomFeature" className="mr-2" />
-            Tranquility Soaking Tub
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomFeature" className="mr-2" />
-            Wheelchair Accessible
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomFeature" className="mr-2" />
-            In-Room Bar w/ Liquor
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomFeature" className="mr-2" />
-            Room Service
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomFeature" className="mr-2" />
-            Patio
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomFeature" className="mr-2" />
-            In-Room Bar w/ Premium Liquor
-          </label>
-          <label className="flex items-center">
-            <input type="checkbox" name="roomFeature" className="mr-2" />
-            Private Pool
-          </label>
+          {[
+            "Balcony",
+            "Tranquility Soaking Tub",
+            "Wheelchair Accessible",
+            "In-Room Bar w/Liquor",
+            "Room Service",
+            "Patio",
+            "In-Room Bar w/ Premium Liquor",
+            "Private Pool",
+          ].map((feature) => (
+            <label key={feature} className="flex items-center">
+              <input
+                type="checkbox"
+                name="roomFeature"
+                className="mr-2"
+                disabled={isCheckboxDisabled(feature)}
+              />
+              <span className={isCheckboxDisabled(feature) ? "text-gray-400" : ""}>
+                {feature}
+              </span>
+            </label>
+          ))}
         </div>
       </div>
 

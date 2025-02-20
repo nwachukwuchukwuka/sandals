@@ -7,17 +7,19 @@ const RoomMainContentHeader = ({
   setActiveView,
   selectedCategory,
   setSelectedCategory,
+  onSortChange,
+  sortOrder
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("low-to-high");
 
   const options = [
     { value: "low-to-high", label: "Low to High" },
     { value: "high-to-low", label: "High to Low" },
   ];
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const handleSortChange = (value) => {
+    onSortChange(value);
+    setIsOpen(false);
   };
 
   return (
@@ -45,14 +47,13 @@ const RoomMainContentHeader = ({
         </div>
 
         <div className="flex items-center">
+          {/* Price Sort Dropdown */}
           <div className="relative mr-[50px]">
             <button
-              id="sort"
-              name="sort"
               onClick={() => setIsOpen(!isOpen)}
               className="flex items-center justify-between gap-2 p-2 px-4 focus:outline-none w-[270px] bg-white"
             >
-              Price: {options.find((opt) => opt.value === selectedValue)?.label}
+              Price: {options.find((opt) => opt.value === sortOrder)?.label}
               <span className="absolute right-1 top-1/2 -translate-y-1/2">
                 <IoIosArrowDown
                   size={20}
@@ -71,15 +72,12 @@ const RoomMainContentHeader = ({
                 {options.map((option) => (
                   <button
                     key={option.value}
-                    onClick={() => {
-                      setSelectedValue(option.value);
-                      setIsOpen(false);
-                    }}
+                    onClick={() => handleSortChange(option.value)}
                     className={`w-full px-4 py-2 text-left hover:bg-gray-100 transition-colors ${
-                      selectedValue === option.value ? "bg-gray-50" : ""
+                      sortOrder === option.value ? "bg-gray-50" : ""
                     }`}
                     role="option"
-                    aria-selected={selectedValue === option.value}
+                    aria-selected={sortOrder === option.value}
                   >
                     Price: {option.label}
                   </button>
