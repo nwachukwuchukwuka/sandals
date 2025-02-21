@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
+import { useRoomFilter } from "./context/RoomFilterContext";
 
 const RoomMainContentHeader = ({
   activeView,
   setActiveView,
-  selectedCategory,
-  setSelectedCategory,
   onSortChange,
-  sortOrder
+  sortOrder,
 }) => {
+  const {
+    selectedCategory,
+    setSelectedCategory,
+    checkedFilters,
+    removeFilter,
+    getFilteredRooms,
+  } = useRoomFilter();
+
   const [isOpen, setIsOpen] = useState(false);
+
+  // Get filtered rooms count
+  const filteredRooms = getFilteredRooms();
+  const roomCount = filteredRooms.length;
 
   const options = [
     { value: "low-to-high", label: "Low to High" },
@@ -22,27 +33,65 @@ const RoomMainContentHeader = ({
     setIsOpen(false);
   };
 
-  return (
-    <div className="">
-      {/* Selected Category Button */}
-      {selectedCategory && (
-        <div className="h-[40px] transition-all duration-300 mb-4">
+  const renderFilterButtons = () => {
+    const allFilters = [];
+
+    if (selectedCategory) {
+      allFilters.push(
+        <button
+          key="category"
+          onClick={() => setSelectedCategory(null)}
+          className="flex items-center bg-white text-blue-500 px-3 py-1.5 uppercase rounded-md text-[12px] font-medium
+                   transition-all duration-300   mr-2"
+        >
+          {selectedCategory}
+          <IoMdClose className="ml-2 w-4 h-4" />
+        </button>
+      );
+    }
+
+    Object.entries(checkedFilters).forEach(([group, filters]) => {
+      filters.forEach((filter) => {
+        allFilters.push(
           <button
-            onClick={() => setSelectedCategory(null)}
-            className="flex items-center bg-blue-100 text-blue-800 px-3 py-1.5 uppercase rounded-md text-[12px] font-medium
-                     transition-all duration-300 hover:bg-blue-200 transform hover:scale-[1.02]"
+            key={`${group}-${filter}`}
+            onClick={() => removeFilter(group, filter)}
+            className="flex items-center bg-white text-blue-500 px-3 py-1.5 uppercase rounded-md text-[12px] font-medium
+                     transition-all duration-300   mr-2"
           >
-            {selectedCategory}
+            {filter}
             <IoMdClose className="ml-2 w-4 h-4" />
           </button>
-        </div>
-      )}
+        );
+      });
+    });
+
+    return allFilters;
+  };
+
+  return (
+    <div className="">
+      {/* Filter Buttons */}
+      <div className="flex flex-wrap gap-2 mb-4">{renderFilterButtons()}</div>
 
       {/* Main Header Content */}
       <div className="flex justify-between items-center">
         <div className="font-bold text-sm tracking-WIDE">
           <span className="transition-all duration-300">
-            15 ROOM CATEGORIES AT THIS RESORT
+            {selectedCategory ||
+            Object.values(checkedFilters).some(
+              (filters) => filters.length > 0
+            ) ? (
+              <>
+                {roomCount} ROOM {roomCount === 1 ? "CATEGORY" : "CATEGORIES"}{" "}
+                MATCHING <span className="text-gray-500">YOUR SELECTIONS</span>
+              </>
+            ) : (
+              <>
+                {roomCount} ROOM {roomCount === 1 ? "CATEGORY" : "CATEGORIES"}{" "}
+                AT THIS RESORT
+              </>
+            )}
           </span>
         </div>
 

@@ -3,45 +3,39 @@ import React, { useState, useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 
 import { roomDetails } from "./constants/roomDetails";
+import { useRoomFilter } from "./context/RoomFilterContext";
 
-const RoomCardOne = ({ selectedCategory, onRoomCountsChange, sortOrder }) => {
+const RoomCardOne = ({ onRoomCountsChange, sortOrder }) => {
   const [dropdownOpen, setDropdownOpen] = useState(
     Array(roomDetails.length).fill(false)
   );
   const [showNonMatching, setShowNonMatching] = useState(false);
 
-  // Filter and sort rooms based on selected category and sort order
-  const { filteredRooms, nonMatchingRooms } = React.useMemo(() => {
-    // First, filter the rooms based on category
-    let filtered = !selectedCategory 
-      ? [...roomDetails] 
-      : roomDetails.filter((room) => {
-          const searchWord = selectedCategory.split(" ")[0].toLowerCase();
-          const titleLower = room.title.toLowerCase();
-          const descriptionLower = room.description.toLowerCase();
-          return titleLower.includes(searchWord) || descriptionLower.includes(searchWord);
-        });
+  const { getFilteredRooms } = useRoomFilter();
 
-    // Then sort the filtered rooms by price
+  // Filter and sort rooms
+  const { filteredRooms, nonMatchingRooms } = React.useMemo(() => {
+    // Get filtered rooms from context
+    let filtered = getFilteredRooms();
+
+    // Sort the filtered rooms by price
     filtered.sort((a, b) => {
       const priceA = parseFloat(a.price.replace('$', '').replace(',', ''));
       const priceB = parseFloat(b.price.replace('$', '').replace(',', ''));
       return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
     });
 
-    // Get non-matching rooms (these should also be sorted)
-    const nonMatching = selectedCategory 
-      ? roomDetails
-          .filter(room => !filtered.includes(room))
-          .sort((a, b) => {
-            const priceA = parseFloat(a.price.replace('$', '').replace(',', ''));
-            const priceB = parseFloat(b.price.replace('$', '').replace(',', ''));
-            return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
-          })
-      : [];
+    // Get non-matching rooms
+    const nonMatching = roomDetails
+      .filter(room => !filtered.includes(room))
+      .sort((a, b) => {
+        const priceA = parseFloat(a.price.replace('$', '').replace(',', ''));
+        const priceB = parseFloat(b.price.replace('$', '').replace(',', ''));
+        return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
+      });
 
     return { filteredRooms: filtered, nonMatchingRooms: nonMatching };
-  }, [selectedCategory, sortOrder]);
+  }, [getFilteredRooms, sortOrder]);
 
   const toggleDropdown = (index) => {
     setDropdownOpen((prev) =>
@@ -162,7 +156,7 @@ const RoomCardOne = ({ selectedCategory, onRoomCountsChange, sortOrder }) => {
       ))}
 
       {/* Non-matching rooms section */}
-      {selectedCategory && nonMatchingRooms.length > 0 && (
+      {nonMatchingRooms.length > 0 && (
         <>
           <hr className="my-6 border-gray-200" />
           <div className="mb-4">

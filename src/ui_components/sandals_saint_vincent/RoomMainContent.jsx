@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RoomMainContentHeader from "../RoomMainContentHeader";
+import RoomMainContentHeader from "./RoomMainContentHeader";
 import RoomCardOne from "./RoomCardOne";
 import RoomCardTwo from "./RoomCardTwo";
 
