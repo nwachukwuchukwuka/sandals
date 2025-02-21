@@ -3,16 +3,16 @@ import { IoIosArrowBack, IoIosArrowForward, IoIosStar } from "react-icons/io";
 import { FaStarHalf } from "react-icons/fa";
 import { carousel_data } from "../constants/constants";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function LocationCarousel() {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isMdScreen, setIsMdScreen] = useState(false);
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 768px)"); 
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
     const handleMediaChange = (e) => setIsMdScreen(e.matches);
 
     setIsMdScreen(mediaQuery.matches);
-
 
     mediaQuery.addEventListener("change", handleMediaChange);
 
@@ -165,13 +165,15 @@ function LocationCarousel() {
                           />
                         </button>
                         <div className="h-[28px] w-[2px] bg-gray-300"></div>
-                        <button className="text-[12px] md:text-xs font-bold flex items-center gap-1 uppercase">
-                          {image.roomLink}
-                          <IoIosArrowForward
-                            size={18}
-                            className="text-blue-500"
-                          />
-                        </button>
+                        <Link to='/sandals-saint-vincent'>
+                          <button className="text-[12px] md:text-xs font-bold flex items-center gap-1 uppercase">
+                            {image.roomLink}
+                            <IoIosArrowForward
+                              size={18}
+                              className="text-blue-500"
+                            />
+                          </button>
+                        </Link>
                       </div>
                     </div>
                     <button className="absolute -right-0  md:-right-[380px] md:bottom-[120px] bg-black px-[20px] md:px-[30px] text-white text-[10px] md:text-sm py-1 mt-[50px] md:mt-4 font-bold">
@@ -206,28 +208,28 @@ function LocationCarousel() {
         </div>
         {/* Navigation Arrows */}
         <button
-        onClick={prevSlide}
-        className={`absolute ${
-          isMdScreen ? "-left-[40px]" : "-left-[20px]"
-        } top-1/3 transform -translate-y-1/2 rounded-full text-gray-800`}
-      >
-        <ChevronLeft 
-          strokeWidth={0.5} 
-          className={isMdScreen ? "w-[120px] h-[120px]" : "w-[60px] h-[60px]"}
-        />
-      </button>
+          onClick={prevSlide}
+          className={`absolute ${
+            isMdScreen ? "-left-[40px]" : "-left-[20px]"
+          } top-1/3 transform -translate-y-1/2 rounded-full text-gray-800`}
+        >
+          <ChevronLeft
+            strokeWidth={0.5}
+            className={isMdScreen ? "w-[120px] h-[120px]" : "w-[60px] h-[60px]"}
+          />
+        </button>
 
-      <button
-        onClick={nextSlide}
-        className={`absolute ${
-          isMdScreen ? "-right-[40px]" : "-right-[20px]"
-        } top-1/3 transform -translate-y-1/2 rounded-full text-gray-800`}
-      >
-        <ChevronRight 
-          strokeWidth={0.5} 
-          className={isMdScreen ? "w-[120px] h-[120px]" : "w-[60px] h-[60px]"}
-        />
-      </button>
+        <button
+          onClick={nextSlide}
+          className={`absolute ${
+            isMdScreen ? "-right-[40px]" : "-right-[20px]"
+          } top-1/3 transform -translate-y-1/2 rounded-full text-gray-800`}
+        >
+          <ChevronRight
+            strokeWidth={0.5}
+            className={isMdScreen ? "w-[120px] h-[120px]" : "w-[60px] h-[60px]"}
+          />
+        </button>
       </div>
     </div>
   );
