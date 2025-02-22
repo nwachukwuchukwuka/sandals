@@ -75,7 +75,7 @@ const RoomMainContentHeader = ({
       <div className="flex flex-wrap gap-2 mb-4">{renderFilterButtons()}</div>
 
       {/* Main Header Content */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-center">
         <div className="font-bold text-sm tracking-WIDE">
           <span className="transition-all duration-300">
             {selectedCategory ||
@@ -97,10 +97,10 @@ const RoomMainContentHeader = ({
 
         <div className="flex items-center">
           {/* Price Sort Dropdown */}
-          <div className="relative mr-[50px]">
+          <div className="relative  md:mr-[50px] mb-6 md:mb-0">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center justify-between gap-2 p-2 px-4 focus:outline-none w-[270px] bg-white"
+              className="flex items-center justify-between gap-2 p-2 px-4 focus:outline-none w-[320px] md:w-[270px] bg-white"
             >
               Price: {options.find((opt) => opt.value === sortOrder)?.label}
               <span className="absolute right-1 top-1/2 -translate-y-1/2">
@@ -136,7 +136,7 @@ const RoomMainContentHeader = ({
           </div>
 
           {/* View Toggle Buttons */}
-          <div className="flex space-x-3">
+          <div className=" space-x-3 hidden  md:flex">
             <button
               onClick={() => setActiveView("card")}
               className="space-y-0.5 focus:outline-none"

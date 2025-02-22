@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RoomMainContentHeader from "./RoomMainContentHeader";
 import RoomCardOne from "./RoomCardOne";
 import RoomCardTwo from "./RoomCardTwo";
-
+import MobileRoomCard from "./MobileRoomCard";
 const RoomMainContent = ({ 
   activeView, 
   setActiveView, 
@@ -35,6 +35,8 @@ const RoomMainContent = ({
         onSortChange={handleSortChange}
         sortOrder={sortOrder}
       />
+      <MobileRoomCard />
+
       {activeView === "card" ? (
         <RoomCardTwo 
           selectedCategory={selectedCategory} 
@@ -48,6 +50,8 @@ const RoomMainContent = ({
           sortOrder={sortOrder}
         />
       )}
+
+      
     </div>
   );
 };

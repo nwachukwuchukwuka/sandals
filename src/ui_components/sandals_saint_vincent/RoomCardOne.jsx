@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 
 import { IoIosArrowForward } from "react-icons/io";
@@ -52,7 +53,7 @@ const RoomCardOne = ({ onRoomCountsChange, sortOrder }) => {
   }, [filteredRooms.length, onRoomCountsChange]);
 
   return (
-    <div>
+    <div className="hidden md:block">
       {/* Category count header */}
 
       {/* Filtered rooms */}

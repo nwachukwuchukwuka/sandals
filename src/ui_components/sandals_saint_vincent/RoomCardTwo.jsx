@@ -38,7 +38,7 @@ const RoomCarousel = ({ images }) => {
         </div>
       </div>
 
-      {/* Prev arrow (hidden by default, shows on hover) */}
+      {/* Prev arrow */}
       <button
         onClick={prevSlide}
         className="absolute top-1/2 left-4 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -46,7 +46,7 @@ const RoomCarousel = ({ images }) => {
         <IoIosArrowBack size={30} className="text-white" />
       </button>
 
-      {/* Next arrow (always visible) */}
+      {/* Next arrow  */}
       <button
         onClick={nextSlide}
         className="absolute top-1/2 right-4 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -99,8 +99,7 @@ const RoomCardTwo = ({ sortOrder }) => {
   }, [getFilteredRooms, sortOrder]);
 
   return (
-    <div>
-      {/* Filtered rooms */}
+    <div className="hidden md:block">
       {/* Filtered Rooms */}
       {filteredRooms.map((roomDetails, index) => (
         <div key={index}>
