@@ -65,6 +65,7 @@ export const roomDetails = [
       { src: room_card_img_1, style: "object-cover w-full h-full" },
       { src: room_card_img_2, style: "h-[150px] object-cover w-full" },
       { src: room_card_img_3, style: "h-[150px] object-cover w-full" },
+      { src: room_card_img_3, style: "h-[150px] object-cover w-full" },
     ],
     title: "Bamboo Palm Room with Balcony Tranquility Soaking Tub",
     description:

@@ -115,7 +115,7 @@ export const RoomFilterProvider = ({ children }) => {
     return checkedFilters[group].length > 0;
   };
 
-  // Updated to handle both arrays
+  // handle both arrays
   const getFilteredRooms = (arrayType = 'roomDetails') => {
     const sourceArray = arrayType === 'roomDetails' ? roomDetails : rooms;
     let filtered = [...sourceArray];

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import RoomMainContentHeader from "./RoomMainContentHeader";
 import RoomCardOne from "./RoomCardOne";
 import RoomCardTwo from "./RoomCardTwo";
@@ -15,9 +15,9 @@ const RoomMainContent = ({
   });
   const [sortOrder, setSortOrder] = useState('low-to-high');
 
-  const handleRoomCountsChange = (counts) => {
+  const handleRoomCountsChange = useCallback((counts) => {
     setRoomCounts(counts);
-  };
+  }, []);
 
   const handleSortChange = (value) => {
     setSortOrder(value);
@@ -35,7 +35,9 @@ const RoomMainContent = ({
         onSortChange={handleSortChange}
         sortOrder={sortOrder}
       />
-      <MobileRoomCard />
+      <MobileRoomCard 
+        sortOrder={sortOrder}
+      />
 
       {activeView === "card" ? (
         <RoomCardTwo 
