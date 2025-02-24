@@ -1,67 +1,10 @@
-// import React, { useState, useEffect } from "react";
-// import { IoIosArrowForward } from "react-icons/io";
-
-// import { roomDetails } from "./constants/roomDetails";
-// import { useRoomFilter } from "./context/RoomFilterContext";
-
-// const RoomCardOne = ({ onRoomCountsChange, sortOrder }) => {
-//   const [dropdownOpen, setDropdownOpen] = useState(
-//     Array(roomDetails.length).fill(false)
-//   );
-//   const [showNonMatching, setShowNonMatching] = useState(false);
-
-//   const { getFilteredRooms } = useRoomFilter();
-
-//   const { filteredRooms, nonMatchingRooms } = React.useMemo(() => {
-//     // 1. Get filtered rooms from context
-//     let filtered = getFilteredRooms();
-  
-//     // 2. Sort the filtered rooms by price
-//     filtered.sort((a, b) => {
-//       const priceA = parseFloat(a.price.replace('$', '').replace(',', ''));
-//       const priceB = parseFloat(b.price.replace('$', '').replace(',', ''));
-//       return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
-//     });
-  
-//     // 3. Get non-matching rooms
-//     const nonMatching = roomDetails
-//       .filter(room => !filtered.includes(room))
-//       .sort((a, b) => {
-//         const priceA = parseFloat(a.price.replace('$', '').replace(',', ''));
-//         const priceB = parseFloat(b.price.replace('$', '').replace(',', ''));
-//         return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
-//       });
-  
-//     return { filteredRooms: filtered, nonMatchingRooms: nonMatching };
-//   }, [getFilteredRooms, sortOrder]);
-  
-//   const toggleDropdown = (index) => {
-//     setDropdownOpen((prev) =>
-//       prev.map((isOpen, i) => (i === index ? !isOpen : isOpen))
-//     );
-//   };
-  
-
-//   useEffect(() => {
-//     onRoomCountsChange({
-//       totalRooms: roomDetails.length,
-//       filteredRooms: filteredRooms.length,
-//     });
-//   }, [filteredRooms.length, onRoomCountsChange]);
-  
-
-// };
-
-// export default RoomCardOne;
-
-
 import React, { useState, useEffect } from "react";
 
 import { IoIosArrowForward } from "react-icons/io";
 
 import { roomDetails } from "./constants/roomDetails";
 import { useRoomFilter } from "./context/RoomFilterContext";
-
+import { Link } from "react-router-dom";
 const RoomCardOne = ({ onRoomCountsChange, sortOrder }) => {
   const [dropdownOpen, setDropdownOpen] = useState(
     Array(roomDetails.length).fill(false)
@@ -77,18 +20,18 @@ const RoomCardOne = ({ onRoomCountsChange, sortOrder }) => {
 
     // Sort the filtered rooms by price
     filtered.sort((a, b) => {
-      const priceA = parseFloat(a.price.replace('$', '').replace(',', ''));
-      const priceB = parseFloat(b.price.replace('$', '').replace(',', ''));
-      return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
+      const priceA = parseFloat(a.price.replace("$", "").replace(",", ""));
+      const priceB = parseFloat(b.price.replace("$", "").replace(",", ""));
+      return sortOrder === "high-to-low" ? priceB - priceA : priceA - priceB;
     });
 
     // Get non-matching rooms
     const nonMatching = roomDetails
-      .filter(room => !filtered.includes(room))
+      .filter((room) => !filtered.includes(room))
       .sort((a, b) => {
-        const priceA = parseFloat(a.price.replace('$', '').replace(',', ''));
-        const priceB = parseFloat(b.price.replace('$', '').replace(',', ''));
-        return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
+        const priceA = parseFloat(a.price.replace("$", "").replace(",", ""));
+        const priceB = parseFloat(b.price.replace("$", "").replace(",", ""));
+        return sortOrder === "high-to-low" ? priceB - priceA : priceA - priceB;
       });
 
     return { filteredRooms: filtered, nonMatchingRooms: nonMatching };
@@ -106,12 +49,11 @@ const RoomCardOne = ({ onRoomCountsChange, sortOrder }) => {
       totalRooms: roomDetails.length,
       filteredRooms: filteredRooms.length,
     });
-  // }, [filteredRooms.length]);
+    // }, [filteredRooms.length]);
   }, [filteredRooms.length, onRoomCountsChange]);
 
   return (
     <div className="hidden md:block">
-
       {/* Filtered rooms */}
       {filteredRooms.map((room, index) => (
         <div key={index}>
@@ -205,9 +147,11 @@ const RoomCardOne = ({ onRoomCountsChange, sortOrder }) => {
             </div>
           </div>
           <div className="flex justify-end">
-            <button className="bg-black text-white py-1.5 uppercase text-[13px] w-[320px] font-bold mt-4 mb-[40px]">
-              ROOM DETAILS
-            </button>
+            <Link to={`/room-details/${room.id}`}>
+              <button className="bg-black text-white py-1.5 uppercase text-[13px] w-[320px] font-bold mt-4 mb-[40px]">
+                ROOM DETAILS
+              </button>
+            </Link>
           </div>
         </div>
       ))}
@@ -227,7 +171,8 @@ const RoomCardOne = ({ onRoomCountsChange, sortOrder }) => {
                 }`}
               />
               <span>
-                View {nonMatchingRooms.length} rooms not matching your selections
+                View {nonMatchingRooms.length} rooms not matching your
+                selections
               </span>
             </button>
 

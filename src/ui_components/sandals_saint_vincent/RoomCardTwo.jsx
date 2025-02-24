@@ -4,7 +4,6 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { rooms } from "./constants/rooms";
 import { useRoomFilter } from "./context/RoomFilterContext";
 
-
 // Carousel component for room images
 const RoomCarousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,7 +31,7 @@ const RoomCarousel = ({ images }) => {
               key={index}
               src={img}
               alt={`Slide ${index}`}
-              className="full h-[255px] object-cover flex-shrink-0"
+              className="w-full h-[255px] object-cover flex-shrink-0"
             />
           ))}
         </div>
@@ -104,7 +103,7 @@ const RoomCardTwo = ({ sortOrder }) => {
       {filteredRooms.map((roomDetails, index) => (
         <div key={index}>
           <div className="flex bg-white shadow-md mt-[20px] gap-2">
-            <div className="w-[45%]">
+            <div className="max-w-[45%]">
               <RoomCarousel images={roomDetails.images} />
               <div className="flex space-x-4 p-[30px]">
                 {roomDetails.icons.map((Icon, iconIndex) => (

@@ -12,7 +12,7 @@ import {
 import { awardsCarouselData } from "@/constants/constants";
 function Awards() {
   return (
-    <div>
+    <div className="bg-white">
       <Carousel
         opts={{
           align: "start",
@@ -24,7 +24,7 @@ function Awards() {
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 ">
               <div className="p-1">
                 <Card className="border-none shadow-none">
-                  <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <CardContent className="flex aspect-square items-center justify-center p-6 ">
                     <div className="">
                       <div key={index} className="md:w-[350px]">
                         <div className="flex justify-center items-end -mb-4">
@@ -63,8 +63,8 @@ function Awards() {
         </CarouselContent>
         <div>
         {/* <div className="hidden md:block"> */}
-          <CarouselPrevious className="border-none" />
-          <CarouselNext className="border-none" />
+          <CarouselPrevious className="border-none " />
+          <CarouselNext className="border-none " />
         </div>
       </Carousel>
       <div className="flex justify-center pb-6">

@@ -12,7 +12,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { reviewsCarouselItems } from "@/constants/constants";
 function Reviews() {
   return (
-    <div>
+    <div className="bg-white">
       <Carousel
         opts={{
           align: "start",
@@ -24,7 +24,7 @@ function Reviews() {
             <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3 ">
               <div className="p-1">
                 <Card className="border-none shadow-none">
-                  <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <CardContent className="flex aspect-square items-center justify-center p-6 "> 
                     <div className="">
                       <h1 className="text-2xl font-bold">{item.hotelName}</h1>
                       <p className="text-gray-600 uppercase text-sm">
@@ -55,8 +55,8 @@ function Reviews() {
         </CarouselContent>
         <div className="">
           {/* <div className="hidden md:block"> */}
-          <CarouselPrevious className="border-none mx-10 md:mx-0" />
-          <CarouselNext className="border-none mx-10 md:mx-0" />
+          <CarouselPrevious className="border-none mx-10 md:mx-0 " />
+          <CarouselNext className="border-none mx-10 md:mx-0 " />
         </div>
       </Carousel>
     </div>

@@ -1,3 +1,7 @@
+import room_card_img_1 from "../../../assets/sandals_saint_vincent/room_card_img_1.webp";
+import room_card_img_2 from "../../../assets/sandals_saint_vincent/room_card_img_2.avif";
+import room_card_img_3 from "../../../assets/sandals_saint_vincent/room_card_img_3.webp";
+import room_card_img_4 from "../../../assets/sandals_saint_vincent/room_card_img_4.webp";
 import room_img_1 from "../../../assets/sandals_saint_vincent/room_img_1.avif";
 import room_img_2 from "../../../assets/sandals_saint_vincent/room_img_2.avif";
 import {
@@ -14,7 +18,7 @@ import {
 
 export const rooms = [
     {
-      images: [room_img_1, room_img_2, room_img_2, room_img_2, room_img_2],
+      images: [room_card_img_1, room_card_img_2, room_card_img_3],
       icons: [Bath, BusFront, Accessibility, Wine],
       title: "Bamboo Palm Room with Balcony Tranquility Soaking Tub",
       description: "Room Views: Pool, Tropical Garden",
@@ -28,7 +32,7 @@ export const rooms = [
       ],
     },
     {
-      images: [room_img_1, room_img_2, room_img_2, room_img_2, room_img_2],
+      images: [room_card_img_4, room_img_2, room_img_2, room_img_2, room_img_2],
       icons: [Bath, BusFront, Wine],
       title:
         "Bamboo Palm Partial Oceanview Room with Balcony Tranquility Soaking Tub",
