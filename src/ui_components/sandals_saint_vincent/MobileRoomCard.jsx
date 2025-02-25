@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { useRoomFilter } from "./context/RoomFilterContext";
 import { roomDetails } from "./constants/roomDetails";
-import { rooms } from "./constants/rooms";
-
+import { Link } from "react-router-dom";
 // Carousel component for room images
 const RoomCarousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -39,7 +38,7 @@ const RoomCarousel = ({ images }) => {
 
   return (
     <div className="relative group h-full">
-      <div 
+      <div
         className="overflow-hidden h-full"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -52,7 +51,7 @@ const RoomCarousel = ({ images }) => {
           {images.map((img, index) => (
             <img
               key={index}
-              src={img.src}
+              src={img}
               alt={`Slide ${index}`}
               className="w-full h-full object-cover flex-shrink-0"
             />
@@ -102,17 +101,17 @@ const MobileRoomCard = ({ sortOrder }) => {
   const { filteredRooms, nonMatchingRooms } = React.useMemo(() => {
     const filtered = getFilteredRooms();
     const sortedFiltered = [...filtered].sort((a, b) => {
-      const priceA = parseFloat(a.price.replace('$', '').replace(',', ''));
-      const priceB = parseFloat(b.price.replace('$', '').replace(',', ''));
-      return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
+      const priceA = parseFloat(a.price.replace("$", "").replace(",", ""));
+      const priceB = parseFloat(b.price.replace("$", "").replace(",", ""));
+      return sortOrder === "high-to-low" ? priceB - priceA : priceA - priceB;
     });
 
     const nonMatching = roomDetails
-      .filter(room => !filtered.includes(room))
+      .filter((room) => !filtered.includes(room))
       .sort((a, b) => {
-        const priceA = parseFloat(a.price.replace('$', '').replace(',', ''));
-        const priceB = parseFloat(b.price.replace('$', '').replace(',', ''));
-        return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
+        const priceA = parseFloat(a.price.replace("$", "").replace(",", ""));
+        const priceB = parseFloat(b.price.replace("$", "").replace(",", ""));
+        return sortOrder === "high-to-low" ? priceB - priceA : priceA - priceB;
       });
 
     return { filteredRooms: sortedFiltered, nonMatchingRooms: nonMatching };
@@ -129,19 +128,19 @@ const MobileRoomCard = ({ sortOrder }) => {
       <div className="mt-[20px] bg-white">
         {/* Carousel Section - Adjusted height for mobile */}
         <div className="h-[200px] md:h-[300px]">
-          <RoomCarousel images={room.images} />
+          <RoomCarousel images={room.images2} />
         </div>
 
         {/* Content Section - Improved padding for mobile */}
         <div className="p-3 md:p-5">
           {/* Title - Adjusted font size */}
           <div className="text-base md:text-lg font-semibold">{room.title}</div>
-          
+
           {/* Description - Adjusted spacing */}
           <div className="text-[12px] md:text-[13px] text-gray-600 mb-1 md:mb-2">
             {room.description}
           </div>
-          
+
           {/* Details - Adjusted text size */}
           <div className="mt-1 text-[12px] md:text-[13px] leading-relaxed text-gray-600">
             {room.details}
@@ -182,12 +181,12 @@ const MobileRoomCard = ({ sortOrder }) => {
 
           {/* Icons Section - Adjusted spacing and size */}
           <div className="flex mt-4 md:mt-8 space-x-2 md:space-x-3">
-            {room.icons.map((Icon, idx) => (
+            {room.icons.map((iconObj, idx) => (
               <div
                 key={idx}
                 className="w-8 h-8 md:w-10 md:h-10 bg-gray-100 rounded-lg flex items-center justify-center"
               >
-                {Icon}
+                {iconObj.icon}
               </div>
             ))}
           </div>
@@ -206,19 +205,22 @@ const MobileRoomCard = ({ sortOrder }) => {
       </div>
 
       {/* Room Details Button - Made full width on mobile */}
-      <div className="flex justify-end px-3 md:px-0">
-        <button className="w-full md:w-[320px] bg-black text-white py-1.5 uppercase text-[12px] md:text-[13px] font-bold mt-4 mb-[20px] md:mb-[40px]">
-          ROOM DETAILS
-        </button>
-      </div>
+      <Link to={`/room-details/${room.id}`}>
+        <div className="flex justify-end px-3 md:px-0">
+          <button className="w-full md:w-[320px] bg-black text-white py-1.5 uppercase text-[12px] md:text-[13px] font-bold mt-4 mb-[20px] md:mb-[40px]">
+            ROOM DETAILS
+          </button>
+        </div>
+      </Link>
     </div>
   );
 
   return (
-    <div className="md:hidden"> {/* Only show on mobile devices */}
+    <div className="md:hidden">
+      {" "}
+      {/* Only show on mobile devices */}
       {/* Filtered Rooms */}
       {filteredRooms.map((room, index) => renderRoomCard(room, index))}
-
       {/* Non-matching rooms section */}
       {nonMatchingRooms.length > 0 && (
         <>
@@ -234,7 +236,8 @@ const MobileRoomCard = ({ sortOrder }) => {
                 }`}
               />
               <span>
-                View {nonMatchingRooms.length} rooms not matching your selections
+                View {nonMatchingRooms.length} rooms not matching your
+                selections
               </span>
             </button>
 
@@ -246,7 +249,9 @@ const MobileRoomCard = ({ sortOrder }) => {
                   : "max-h-0 opacity-0"
               }`}
             >
-              {nonMatchingRooms.map((room, index) => renderRoomCard(room, index))}
+              {nonMatchingRooms.map((room, index) =>
+                renderRoomCard(room, index)
+              )}
             </div>
           </div>
         </>

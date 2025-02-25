@@ -126,12 +126,12 @@ const RoomCardOne = ({ onRoomCountsChange, sortOrder }) => {
 
               {/* Icons Section */}
               <div className="flex mt-8 space-x-3">
-                {room.icons.map((Icon, idx) => (
+                {room.icons.map((iconObj, idx) => (
                   <div
                     key={idx}
                     className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center"
                   >
-                    {Icon}
+                    {iconObj.icon}
                   </div>
                 ))}
               </div>
@@ -255,12 +255,12 @@ const RoomCardOne = ({ onRoomCountsChange, sortOrder }) => {
 
                       {/* Icons Section */}
                       <div className="flex mt-8 space-x-3">
-                        {room.icons.map((Icon, idx) => (
+                        {room.icons.map((iconObj, idx) => (
                           <div
                             key={idx}
                             className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center"
                           >
-                            {Icon}
+                            {iconObj.icon}
                           </div>
                         ))}
                       </div>

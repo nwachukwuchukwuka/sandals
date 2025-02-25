@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import { rooms } from "./constants/rooms";
+import { roomDetails } from "./constants/roomDetails";
 import { useRoomFilter } from "./context/RoomFilterContext";
-
+import { Link } from "react-router-dom";
 // Carousel component for room images
 const RoomCarousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -75,26 +75,26 @@ const RoomCardTwo = ({ sortOrder }) => {
 
   // Filter and sort rooms
   const { filteredRooms, nonMatchingRooms } = React.useMemo(() => {
-    // Get filtered rooms using the 'rooms' array
-    const filtered = getFilteredRooms('rooms');
+    // Get filtered rooms from context
+    let filtered = getFilteredRooms();
 
-    // Sort filtered rooms
-    const sortedFiltered = [...filtered].sort((a, b) => {
-      const priceA = parseFloat(a.price);
-      const priceB = parseFloat(b.price);
-      return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
+    // Sort the filtered rooms by price
+    filtered.sort((a, b) => {
+      const priceA = parseFloat(a.price.replace("$", "").replace(",", ""));
+      const priceB = parseFloat(b.price.replace("$", "").replace(",", ""));
+      return sortOrder === "high-to-low" ? priceB - priceA : priceA - priceB;
     });
 
     // Get non-matching rooms
-    const nonMatching = rooms
-      .filter(room => !filtered.includes(room))
+    const nonMatching = roomDetails
+      .filter((room) => !filtered.includes(room))
       .sort((a, b) => {
-        const priceA = parseFloat(a.price);
-        const priceB = parseFloat(b.price);
-        return sortOrder === 'high-to-low' ? priceB - priceA : priceA - priceB;
+        const priceA = parseFloat(a.price.replace("$", "").replace(",", ""));
+        const priceB = parseFloat(b.price.replace("$", "").replace(",", ""));
+        return sortOrder === "high-to-low" ? priceB - priceA : priceA - priceB;
       });
 
-    return { filteredRooms: sortedFiltered, nonMatchingRooms: nonMatching };
+    return { filteredRooms: filtered, nonMatchingRooms: nonMatching };
   }, [getFilteredRooms, sortOrder]);
 
   return (
@@ -104,14 +104,14 @@ const RoomCardTwo = ({ sortOrder }) => {
         <div key={index}>
           <div className="flex bg-white shadow-md mt-[20px] gap-2">
             <div className="max-w-[45%]">
-              <RoomCarousel images={roomDetails.images} />
+              <RoomCarousel images={roomDetails.images2} />
               <div className="flex space-x-4 p-[30px]">
-                {roomDetails.icons.map((Icon, iconIndex) => (
+                {roomDetails.icons.map((iconObj, iconIndex) => (
                   <div
                     key={iconIndex}
                     className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-lg"
                   >
-                    <Icon />
+                    {iconObj.icon}
                   </div>
                 ))}
               </div>
@@ -122,7 +122,7 @@ const RoomCardTwo = ({ sortOrder }) => {
               </h2>
               <div className="">
                 <p className="text-[13px] text-gray-500 mb-4">
-                  {roomDetails.description}
+                  {roomDetails.description2}
                 </p>
               </div>
 
@@ -142,12 +142,12 @@ const RoomCardTwo = ({ sortOrder }) => {
                 </div>
               </div>
 
-              {/* Price Section */}
+              {/* Price Section for filtered rooms */}
               <div className="pt-10 flex justify-end">
                 <p className="text-sm font-medium">
                   STARTING FROM{" "}
                   <span className="text-[35px] font-bold">
-                    ${roomDetails.price}
+                    {roomDetails.price}
                   </span>
                   <span className="text-xl">PP/PN</span>
                 </p>
@@ -155,9 +155,11 @@ const RoomCardTwo = ({ sortOrder }) => {
             </div>
           </div>
           <div className="flex justify-end">
-            <button className="bg-black text-white py-1.5 uppercase text-[13px] w-[320px] font-bold mt-4 mb-[40px]">
-              ROOM DETAILS
-            </button>
+            <Link to={`/room-details/${roomDetails.id}`}>
+              <button className="bg-black text-white py-1.5 uppercase text-[13px] w-[320px] font-bold mt-4 mb-[40px]">
+                ROOM DETAILS
+              </button>
+            </Link>
           </div>
         </div>
       ))}
@@ -193,16 +195,15 @@ const RoomCardTwo = ({ sortOrder }) => {
               {nonMatchingRooms.map((roomDetails, index) => (
                 <div key={index}>
                   <div className="flex bg-white shadow-md mt-[20px] gap-2">
-                    {/* Same room card content as above */}
                     <div className="w-[45%]">
-                      <RoomCarousel images={roomDetails.images} />
+                      <RoomCarousel images={roomDetails.images2} />
                       <div className="flex space-x-4 p-[30px]">
-                        {roomDetails.icons.map((Icon, iconIndex) => (
+                        {roomDetails.icons.map((iconObj, iconIndex) => (
                           <div
                             key={iconIndex}
                             className="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-lg"
                           >
-                            <Icon />
+                            {iconObj.icon}
                           </div>
                         ))}
                       </div>
@@ -233,12 +234,12 @@ const RoomCardTwo = ({ sortOrder }) => {
                         </div>
                       </div>
 
-                      {/* Price Section */}
+                      {/* Price Section for non-matching rooms */}
                       <div className="pt-10 flex justify-end">
                         <p className="text-sm font-medium">
                           STARTING FROM{" "}
                           <span className="text-[35px] font-bold">
-                            ${roomDetails.price}
+                            {roomDetails.price}
                           </span>
                           <span className="text-xl">PP/PN</span>
                         </p>

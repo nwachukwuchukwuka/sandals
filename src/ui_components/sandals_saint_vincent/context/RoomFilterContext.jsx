@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { roomDetails } from '../constants/roomDetails';
-import { rooms } from '../constants/rooms';
+// import { rooms } from '../constants/rooms';
 
 const RoomFilterContext = createContext();
 
